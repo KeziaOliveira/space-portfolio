@@ -293,6 +293,15 @@ export default function ExploreMode({ onClose }) {
     setFlyingToId(id);
   };
 
+  // Bloquear scroll do body ao entrar no modo exploração
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow || 'auto';
+    };
+  }, []);
+
   const handlePlanetClick = (pos, id) => {
     startFlight([pos.x, pos.y, pos.z], id);
   };

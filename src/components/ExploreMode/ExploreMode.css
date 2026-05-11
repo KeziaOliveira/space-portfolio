@@ -11,6 +11,7 @@
   background: #020617; /* Fundo hiper escuro */
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Remove barras de scroll laterais */
   animation: fadeIn 0.5s ease-out forwards;
 }
 
