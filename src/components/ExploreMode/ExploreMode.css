@@ -1,0 +1,265 @@
+/* ===========================
+   Explore Mode Component
+   =========================== */
+
+.explore-mode {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #020617; /* Fundo hiper escuro */
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.explore__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none; /* Deixa cliques passarem, exceto no botão */
+}
+
+.explore__back-btn {
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.explore__back-btn:hover {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--glow-primary);
+  transform: translateX(-2px);
+}
+
+.explore__hint {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.5);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  animation: pulse 2s infinite;
+}
+
+/* Modal Overlay (Panel 2D) */
+.explore__panel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Modal na esquerda agora */
+  z-index: 50;
+  background: linear-gradient(to left, transparent 20%, rgba(2, 6, 23, 0.8) 100%);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+  pointer-events: none;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.explore__panel {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--color-accent-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12);
+  max-width: 65%;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 30px 0 60px rgba(0, 0, 0, 0.6);
+  position: relative;
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+}
+
+/* Custom scrollbar for modal */
+.explore__panel::-webkit-scrollbar {
+  width: 6px;
+}
+.explore__panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.explore__panel::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 10px;
+}
+
+.explore__panel-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-2xl);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.explore__panel-close:hover {
+  color: var(--color-accent-primary-light);
+}
+
+.explore__panel-title {
+  color: var(--color-accent-primary-light);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.explore__panel h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.explore__panel-content {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+}
+
+.explore__panel-content p {
+  margin-bottom: var(--space-4);
+}
+
+.explore__panel-content ul {
+  list-style: disc;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.explore__panel-content li {
+  margin-bottom: var(--space-2);
+}
+
+.explore__panel-content a {
+  color: var(--color-accent-secondary);
+  text-decoration: none;
+}
+.explore__panel-content a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Navegação (Setinhas)
+   =========================== */
+
+.explore__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 60;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.explore__nav-btn:hover:not(:disabled) {
+  background: var(--color-bg-card-hover);
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--glow-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.explore__nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.explore__nav-btn--prev {
+  left: var(--space-8);
+}
+
+.explore__nav-btn--next {
+  right: var(--space-8);
+}
+
+@media (min-width: 1025px) {
+  .explore__nav-btn {
+    display: none;
+  }
+}
+
+/* ===========================
+   Indicador de Progresso
+   =========================== */
+
+.explore__progress {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  z-index: 60;
+  background: rgba(15, 23, 42, 0.6);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  pointer-events: auto;
+}
+
+.explore__progress-item {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.explore__progress-item:hover {
+  color: var(--color-text-secondary);
+}
+
+.explore__progress-item.is-active {
+  color: var(--color-accent-primary-light);
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.explore__progress-separator {
+  width: 20px;
+  height: 1px;
+  background: var(--color-border);
+}

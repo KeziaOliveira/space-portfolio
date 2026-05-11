@@ -1,0 +1,21 @@
+/* ===========================
+   Scene3D Component
+   =========================== */
+
+.scene3d-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: auto; /* Permite interagir com os objetos 3D */
+  opacity: 0;
+  animation: sceneFadeIn 2s ease-in-out forwards;
+}
+
+@keyframes sceneFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+

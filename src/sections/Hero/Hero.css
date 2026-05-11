@@ -1,0 +1,219 @@
+/* ===========================
+   Hero Section
+   =========================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-24) var(--space-6) var(--space-16);
+  overflow: hidden;
+  background: transparent;
+}
+
+/* CSS Starfield — fallback para mobile */
+.hero__stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Oculta o starfield 2D no desktop, onde a Scene3D assumirá */
+@media (min-width: 768px) {
+  .hero__stars {
+    display: none;
+  }
+}
+
+.hero__stars::before,
+.hero__stars::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.hero__stars::before {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    120px 80px 0 0 rgba(255,255,255,0.4),
+    500px 60px 0 0 rgba(255,255,255,0.3),
+    700px 200px 0 0 rgba(255,255,255,0.15),
+    250px 400px 0 0 rgba(255,255,255,0.2),
+    600px 350px 0 0 rgba(255,255,255,0.35),
+    900px 100px 0 0 rgba(255,255,255,0.2),
+    400px 550px 0 0 rgba(255,255,255,0.25),
+    1050px 180px 0 0 rgba(255,255,255,0.15),
+    750px 500px 0 0 rgba(255,255,255,0.2);
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+.hero__stars::after {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    180px 120px 0 0 rgba(255,255,255,0.3),
+    650px 280px 0 0 rgba(255,255,255,0.35),
+    850px 50px 0 0 rgba(255,255,255,0.2),
+    320px 380px 0 0 rgba(255,255,255,0.3),
+    1000px 300px 0 0 rgba(255,255,255,0.2),
+    480px 320px 0 0 rgba(255,255,255,0.15),
+    950px 420px 0 0 rgba(255,255,255,0.25);
+  animation: twinkle 6s ease-in-out 1.5s infinite alternate;
+}
+
+.hero__stars--medium::before {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    200px 160px 0 0 rgba(255,255,255,0.2),
+    580px 220px 0 0 rgba(255,255,255,0.15),
+    400px 100px 0 0 rgba(255,255,255,0.25),
+    1100px 250px 0 0 rgba(255,255,255,0.2);
+  animation: twinkle 7s ease-in-out 0.5s infinite alternate;
+}
+
+.hero__stars--medium::after {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    350px 50px 0 0 rgba(167,139,250,0.25),
+    800px 150px 0 0 rgba(6,182,212,0.2);
+  animation: twinkle 8s ease-in-out 2s infinite alternate;
+}
+
+/* Large stars removed — cleaner look */
+.hero__stars--large {
+  display: none;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Content */
+.hero__container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  animation: fadeInUp 0.8s ease-out;
+  pointer-events: none; /* Permite que cliques passem para a cena 3D no fundo */
+}
+
+/* Reativar cliques nos elementos interativos */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  pointer-events: auto;
+}
+
+.hero__badge, .hero__name, .hero__headline, .hero__subheadline {
+  pointer-events: auto; /* Permite selecionar o texto */
+}
+
+/* Dica interativa */
+.hero__hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-12);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  animation: pulseOpacity 2.5s infinite ease-in-out;
+  user-select: none;
+}
+
+.hero__hint-icon {
+  color: var(--color-accent-primary-light);
+  font-size: var(--font-size-lg);
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent-primary-light);
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-8);
+}
+
+.hero__name {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+  background: linear-gradient(135deg, var(--color-text-primary) 40%, var(--color-accent-primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__headline {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  max-width: 560px;
+}
+
+.hero__subheadline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+  max-width: 500px;
+  margin-bottom: var(--space-12);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .hero {
+    padding: var(--space-20) var(--space-6) var(--space-12);
+  }
+
+  .hero__name {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero__headline {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+

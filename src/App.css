@@ -1,0 +1,38 @@
+/* ===========================
+   App-level styles
+   =========================== */
+
+/* Smooth section transitions */
+main {
+  position: relative;
+  z-index: 10;
+  pointer-events: none; /* Clicks pass through the main container to the 3D canvas */
+}
+
+main > section {
+  position: relative;
+  pointer-events: none; /* Let clicks pass through empty spaces */
+}
+
+/* Re-enable clicks on actual content containers */
+.section__container {
+  pointer-events: auto;
+}
+
+/* Divider between sections — subtle gradient line */
+main > section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(200px, 40%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-primary) 50%,
+    transparent
+  );
+  opacity: 0.3;
+}

@@ -1,0 +1,89 @@
+/* ===========================
+   Button Component
+   =========================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn__icon {
+  display: inline-flex;
+  font-size: var(--font-size-base);
+}
+
+/* Primary */
+.btn--primary {
+  background: var(--color-accent-gradient);
+  color: #fff;
+  border: none;
+  box-shadow: var(--glow-primary);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-gradient-hover);
+  box-shadow: var(--glow-primary-strong);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Secondary */
+.btn--secondary {
+  background: transparent;
+  color: var(--color-accent-primary-light);
+  border: 1px solid var(--color-border-hover);
+}
+
+.btn--secondary:hover {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: var(--color-accent-primary-light);
+  box-shadow: var(--glow-primary);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn--secondary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Ghost */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.btn--ghost:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.15);
+  transform: translateY(-1px) scale(1.02);
+}
+
+.btn--ghost:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-sm);
+  }
+}

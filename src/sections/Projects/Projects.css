@@ -1,0 +1,44 @@
+/* ===========================
+   Projects Section
+   =========================== */
+
+.projects {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Continuidade visual: brilho estelar no topo da seção */
+.projects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.projects .section__container {
+  position: relative;
+  z-index: 1;
+}
+
+.projects .section__subtitle {
+  margin-bottom: var(--space-12);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
