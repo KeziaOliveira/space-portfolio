@@ -21,6 +21,7 @@ export default function About() {
             <div className="about__orbit">
               <div className="about__planet"></div>
               <div className="about__ring"></div>
+              <div className="about__ring about__ring--2"></div>
             </div>
           </div>
         </div>

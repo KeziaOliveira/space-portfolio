@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Hero from './sections/Hero/Hero';
 import About from './sections/About/About';
+import Experience from './sections/Experience/Experience';
 import Projects from './sections/Projects/Projects';
 import Tech from './sections/Tech/Tech';
 import Contact from './sections/Contact/Contact';
@@ -30,6 +31,7 @@ export default function App() {
       <main id="main-content">
         <Hero onExplore={() => setIsExploreMode(true)} />
         <About />
+        <Experience />
         <Projects />
         <Tech />
         <Contact />

@@ -35,29 +35,32 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-4);
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border-card);
+  padding: var(--space-4) var(--space-5);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  transition: all 0.3s ease;
+  transition: var(--transition-spring);
+  backdrop-filter: blur(8px);
 }
 
 .tech__item:hover {
-  background: var(--color-bg-card-hover);
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px) scale(1.02);
+  background: rgba(124, 58, 237, 0.1);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-5px);
   box-shadow: var(--glow-primary);
 }
 
 .tech__icon {
   font-size: var(--font-size-xl);
   line-height: 1;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
 
 .tech__name {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
 }
 
 .tech__item:hover .tech__name {

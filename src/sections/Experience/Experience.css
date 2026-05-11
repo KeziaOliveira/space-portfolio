@@ -1,0 +1,107 @@
+.experience {
+  position: relative;
+}
+
+.experience__timeline {
+  position: relative;
+  max-width: 800px;
+  margin: var(--space-12) auto 0;
+  padding-left: var(--space-8);
+}
+
+.experience__timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-accent-gradient);
+  border-radius: var(--radius-full);
+  opacity: 0.3;
+}
+
+.experience__item {
+  position: relative;
+  margin-bottom: var(--space-12);
+}
+
+.experience__item:last-child {
+  margin-bottom: 0;
+}
+
+.experience__dot {
+  position: absolute;
+  left: calc(-1 * var(--space-8) - 5px);
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-accent-primary);
+  border-radius: 50%;
+  box-shadow: var(--glow-primary);
+  border: 2px solid var(--color-bg-primary);
+}
+
+.experience__card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+  backdrop-filter: blur(12px);
+  transition: var(--transition-base);
+}
+
+.experience__card:hover {
+  border-color: var(--color-accent-primary);
+  background: rgba(15, 23, 42, 0.85);
+  transform: translateX(8px);
+}
+
+.experience__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
+}
+
+.experience__title h3 {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+}
+
+.experience__company {
+  color: var(--color-accent-primary-light);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.experience__period {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.experience__description {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 767px) {
+  .experience__header {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .experience__period {
+    align-self: flex-start;
+  }
+}

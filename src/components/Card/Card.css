@@ -5,19 +5,31 @@
 .card {
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border-card);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: var(--space-8);
-  transition: all 0.3s ease;
+  transition: var(--transition-spring);
   height: 100%;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glass-reflection);
+  pointer-events: none;
 }
 
 .card:hover {
-  background: var(--color-bg-card-hover);
-  border-color: var(--color-border-hover);
-  box-shadow: var(--glow-primary);
-  transform: translateY(-4px) scale(1.01);
+  background: rgba(15, 23, 42, 0.85);
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--glow-primary), var(--shadow-lg);
+  transform: translateY(-8px) scale(1.02);
 }
 
 .card__body {
