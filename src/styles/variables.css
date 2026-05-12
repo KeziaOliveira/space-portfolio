@@ -3,35 +3,35 @@
    =========================== */
 
 :root {
-  /* Colors — Deep Space Palette */
-  --color-bg-primary: #0a0a1a;
-  --color-bg-secondary: #111128;
-  --color-bg-card: #16163a;
-  --color-bg-card-hover: #1c1c4a;
-  --color-surface: rgba(124, 58, 237, 0.06);
+  /* Colors — Intense Blue Space Palette */
+  --color-bg-primary: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-bg-card-hover: #334155;
+  --color-surface: rgba(37, 99, 235, 0.06);
 
   /* Accent */
-  --color-accent-primary: #7c3aed;
-  --color-accent-primary-light: #a78bfa;
-  --color-accent-secondary: #06b6d4;
-  --color-accent-gradient: linear-gradient(135deg, #7c3aed, #06b6d4);
-  --color-accent-gradient-hover: linear-gradient(135deg, #8b5cf6, #22d3ee);
+  --color-accent-primary: #2563eb;
+  --color-accent-primary-light: #60a5fa;
+  --color-accent-secondary: #0ea5e9;
+  --color-accent-gradient: linear-gradient(135deg, #2563eb, #0ea5e9);
+  --color-accent-gradient-hover: linear-gradient(135deg, #3b82f6, #38bdf8);
 
   /* Text */
-  --color-text-primary: #e2e8f0;
+  --color-text-primary: #f8fafc;
   --color-text-secondary: #94a3b8;
   --color-text-muted: #64748b;
-  --color-text-accent: #a78bfa;
+  --color-text-accent: #60a5fa;
 
   /* Borders */
-  --color-border: rgba(124, 58, 237, 0.15);
-  --color-border-hover: rgba(124, 58, 237, 0.4);
-  --color-border-card: rgba(124, 58, 237, 0.12);
+  --color-border: rgba(37, 99, 235, 0.15);
+  --color-border-hover: rgba(37, 99, 235, 0.4);
+  --color-border-card: rgba(37, 99, 235, 0.12);
 
   /* Glow & Shadows */
-  --glow-primary: 0 0 20px rgba(124, 58, 237, 0.3);
-  --glow-primary-strong: 0 0 40px rgba(124, 58, 237, 0.6);
-  --glow-secondary: 0 0 20px rgba(6, 182, 212, 0.3);
+  --glow-primary: 0 0 20px rgba(37, 99, 235, 0.3);
+  --glow-primary-strong: 0 0 40px rgba(37, 99, 235, 0.6);
+  --glow-secondary: 0 0 20px rgba(14, 165, 233, 0.3);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
@@ -42,7 +42,7 @@
   --glass-reflection: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
 
   /* Typography */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family: 'Google Sans Flex', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;

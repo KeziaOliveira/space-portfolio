@@ -56,36 +56,52 @@ function SpaceshipModel({ isMoving }) {
   }, [obj, texture]);
 
   return (
-    <group rotation={[4.8, 0, 0]}>
+    <group rotation={[-1.57, 0, 0]}>
       <primitive
         object={model}
-        scale={[0.05, 0.05, 0.05]}
+        scale={[0.12, 0.12, 0.12]}
       />
       {/* Dois jatos laterais mais próximos e curtos */}
-      <group position={[0.25, -1, -0.3]}>
+      <group position={[0.6, -2.4, -0.72]}>
         <EngineFire active={isMoving} />
       </group>
-      <group position={[-0.25, -1, -0.3]}>
+      <group position={[-0.6, -2.4, -0.72]}>
         <EngineFire active={isMoving} />
       </group>
     </group>
   );
 }
 
+
 // --- Nave com lógica de voo ---
 function Spaceship({ target, onArrive, isMoving }) {
   const shipRef = useRef();
   const { camera } = useThree();
   const [hasArrived, setHasArrived] = useState(false);
+  const [isIntro, setIsIntro] = useState(true);
 
   useEffect(() => {
-    if (target) setHasArrived(false);
+    if (target) {
+      setHasArrived(false);
+      setIsIntro(false);
+    }
   }, [target]);
 
   useFrame((state, delta) => {
     if (!shipRef.current) return;
 
-    if (target && !hasArrived) {
+    if (isIntro) {
+      // Animação de entrada: navega da esquerda para o centro de forma mais fluida
+      shipRef.current.position.x = THREE.MathUtils.lerp(shipRef.current.position.x, 0, delta * 1.5);
+      shipRef.current.position.z = THREE.MathUtils.lerp(shipRef.current.position.z, 0, delta * 1.5);
+      
+      // Suaviza a rotação (aponta para o centro enquanto entra)
+      shipRef.current.rotation.y = THREE.MathUtils.lerp(shipRef.current.rotation.y, 0, delta * 1.2);
+      
+      if (Math.abs(shipRef.current.position.x) < 0.05) {
+        setIsIntro(false);
+      }
+    } else if (target && !hasArrived) {
       const dist = shipRef.current.position.distanceTo(target);
 
       if (dist > 3.5) {
@@ -93,8 +109,8 @@ function Spaceship({ target, onArrive, isMoving }) {
           shipRef.current.position, target, new THREE.Vector3(0, 1, 0)
         );
         const quaternion = new THREE.Quaternion().setFromRotationMatrix(targetRotation);
-        shipRef.current.quaternion.slerp(quaternion, delta * 5); // Curva mais rápida
-        shipRef.current.translateZ(-delta * 13); // Velocidade aumentada de 8 para 20
+        shipRef.current.quaternion.slerp(quaternion, delta * 5); 
+        shipRef.current.translateZ(-delta * 13); 
       } else {
         setHasArrived(true);
         onArrive();
@@ -104,15 +120,14 @@ function Spaceship({ target, onArrive, isMoving }) {
       shipRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
     }
 
-    // Câmera terceira pessoa - Ajuste de enquadramento via alvo (lookAt)
-    const camDist = onArrive && hasArrived ? 45 : 10;
+    // Câmera terceira pessoa
+    const camDist = (onArrive && hasArrived) ? 45 : 10;
     const cameraOffset = new THREE.Vector3(0, 2, camDist);
     cameraOffset.applyQuaternion(shipRef.current.quaternion);
     cameraOffset.add(shipRef.current.position);
     camera.position.lerp(cameraOffset, delta * 3);
 
-    // Deslocamos o alvo para a esquerda para o planeta ir para a direita
-    const lookOffset = onArrive && hasArrived ? new THREE.Vector3(-18, 0, 0) : new THREE.Vector3(0, 0, 0);
+    const lookOffset = (onArrive && hasArrived) ? new THREE.Vector3(-18, 0, 0) : new THREE.Vector3(0, 0, 0);
     lookOffset.applyQuaternion(shipRef.current.quaternion);
     const targetPoint = shipRef.current.position.clone().add(lookOffset);
     
@@ -120,11 +135,18 @@ function Spaceship({ target, onArrive, isMoving }) {
   });
 
   return (
-    <group ref={shipRef} position={[0, 0, 0]}>
-      <SpaceshipModel isMoving={isMoving && !hasArrived} />
+    <group 
+      ref={shipRef} 
+      position={[-12, 0, 5]} 
+      rotation={[0, -Math.PI / 2, 0]}
+    >
+      <SpaceshipModel isMoving={(isMoving && !hasArrived) || isIntro} />
     </group>
   );
 }
+
+
+
 
 // --- Modelo FBX do Planeta ---
 function PlanetModel({ url, color }) {
@@ -277,7 +299,7 @@ export default function ExploreMode({ onClose }) {
 
   // Definição das rotas do universo
   const planets = [
-    { id: 'sobre', label: 'SOBRE', position: [-15, 2, -20], color: '#a78bfa' },
+    { id: 'sobre', label: 'SOBRE', position: [-15, 2, -20], color: '#3b82f6' },
     { id: 'projetos', label: 'PROJETOS', position: [10, -5, -40], color: '#22d3ee' },
     { id: 'contato', label: 'CONTATO', position: [-5, 8, -60], color: '#fbbf24' }
   ];

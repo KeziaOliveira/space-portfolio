@@ -5,7 +5,6 @@ import Hero from './sections/Hero/Hero';
 import About from './sections/About/About';
 import Experience from './sections/Experience/Experience';
 import Projects from './sections/Projects/Projects';
-import Tech from './sections/Tech/Tech';
 import Contact from './sections/Contact/Contact';
 import Scene3D from './components/Scene3D/Scene3D';
 import ExploreMode from './components/ExploreMode/ExploreMode';
@@ -13,8 +12,6 @@ import './App.css';
 
 export default function App() {
   const [isExploreMode, setIsExploreMode] = useState(false);
-
-  console.log("App renderizado. isExploreMode:", isExploreMode);
 
   return (
     <>
@@ -33,7 +30,7 @@ export default function App() {
         <About />
         <Experience />
         <Projects />
-        <Tech />
+
         <Contact />
       </main>
 
