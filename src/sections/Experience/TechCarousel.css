@@ -1,0 +1,130 @@
+.tech-carousel {
+  position: relative;
+  width: 100%;
+  z-index: 999; /* Super alto para garantir interação */
+  background: transparent;
+  margin-top: 0; /* Removido margin negativa para evitar sobreposição com os números */
+  pointer-events: none; /* Deixa cliques passarem para os filhos específicos */
+}
+
+.tech-carousel__inner {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+  pointer-events: auto; /* Reabilita cliques aqui */
+}
+
+.tech-carousel__marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Espaço generoso para o tooltip e animação flutuante */
+  padding: 80px 0 40px 0;
+}
+
+.tech-carousel__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  pointer-events: auto;
+}
+
+.tech-carousel:hover .tech-carousel__track {
+  animation-play-state: paused;
+}
+
+.tech-carousel__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-12);
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.tech-carousel__icon-wrapper {
+  width: 48px; /* Aumentado para 48px */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  filter: grayscale(1);
+  opacity: 0.5;
+  pointer-events: none; /* Para não interferir no hover do item pai */
+}
+
+.tech-carousel__item:hover .tech-carousel__icon-wrapper {
+  filter: grayscale(0) drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+  opacity: 1;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.tech-carousel__icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tooltip Premium */
+.tech-carousel__tooltip {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #0f172a;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1000;
+}
+
+.tech-carousel__item:hover .tech-carousel__tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Edge Fades */
+.tech-carousel__fade {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.tech-carousel__fade--left {
+  left: 0;
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.tech-carousel__fade--right {
+  right: 0;
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+@keyframes floatIcon {
+  0%, 100% { 
+    transform: translate(-10px, 0) rotate(-2deg) scale(1.15); 
+  }
+  50% { 
+    transform: translate(10px, -5px) rotate(2deg) scale(1.2); 
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
