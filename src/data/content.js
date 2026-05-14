@@ -22,25 +22,25 @@ export const about = {
 
 export const experience = [
   {
-    company: 'Projetos Educacionais (EscolaWeb)',
+    company: 'SFE',
     role: 'Desenvolvedora Web',
     period: '2021 — 2023',
-    description: 'Contribuição central no desenvolvimento de módulos de gestão escolar e e-commerce. Implementação de fluxos de autenticação, vitrine de produtos e sistemas de e-ticket, focando em performance e escalabilidade.',
-    videoUrl: '../../assets/videos/ecommerce-recording.mp4',
+    description: 'Desenvolvimento de sistema de força de vendas com foco em performance e agilidade na gestão de pedidos em campo.',
+    videoUrl: '../../assets/videos/experience_videos/SFE_video.mp4',
   },
   {
-    company: 'ScoreBoard BT',
-    role: 'Desenvolvedora Frontend',
-    period: '2022 — Presente',
-    description: 'Sistema de gerenciamento de torneios de tênis com placar atualizado em tempo real via WebSocket. Inclui overlays customizáveis com chroma key para transmissões ao vivo.',
-    videoUrl: null,
+    company: 'Ecommerce',
+    role: 'Desenvolvedora Web',
+    period: '2021 — 2023',
+    description: 'Implementação de vitrine de produtos, fluxos de checkout e gestão de pedidos para plataforma de e-commerce escolar.',
+    videoUrl: '../../assets/videos/experience_videos/ecommerce-recording.mp4',
   },
   {
-    company: 'Gear Workshop',
-    role: 'Desenvolvedora Frontend',
-    period: '2022 — Presente',
-    description: 'Plataforma de ordens de serviço criada para oficinas organizarem seu fluxo de trabalho. Conta com dashboard Kanban para visualização de status e rastreamento público.',
-    videoUrl: null,
+    company: 'EscolaWeb',
+    role: 'Desenvolvedora Web',
+    period: '2021 — 2023',
+    description: 'Contribuição no desenvolvimento de módulos de gestão escolar, incluindo sistemas de e-ticket e fluxos de autenticação escaláveis.',
+    videoUrl: '../../assets/videos/experience_videos/Escolaweb_video.mp4',
   },
 ];
 

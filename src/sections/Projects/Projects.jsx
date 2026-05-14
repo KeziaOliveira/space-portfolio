@@ -3,16 +3,15 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { projects } from '../../data/content';
 import './Projects.css';
 
-// Import the video as a fallback/mock
-import demoVideo from '../../assets/videos/ecommerce-recording.mp4';
+// Import the real project videos
+import geeoVideo from '../../assets/videos/projects_videos/Geeo_video.mp4';
+import goldVideo from '../../assets/videos/projects_videos/Gold_video.mp4';
 
 const ProjectCard = ({ project, index, setActiveProject }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    // Adjusted margin to trigger when the title is aligned with the mockup's center
-    // Mockup is at top: 30vh, and centered in the remaining height (65vh).
-    // This puts the trigger point at approximately 62.5% from the top of the viewport.
-    margin: "-62.5% 0px -37% 0px", 
+    // Trigger when the title reaches the new center position (57.5% from top)
+    margin: "-57.5% 0px -42.5% 0px", 
     once: false
   });
 
@@ -83,7 +82,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
         y: isActive ? 0 : 60, // Stronger "lift"
         x: isActive ? 0 : 40, // Stronger "approach" (moves from right to left)
         zIndex: isActive ? 10 : 0,
-        filter: isActive ? 'blur(0px)' : 'blur(8px)',
+        filter: 'none',
       }}
       transition={{ 
         type: "spring",
@@ -107,17 +106,21 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
           rotateY: isActive ? mousePos.x * 0.03 : 0,
         }}
       >
-        <div className="mockup-header">
-          <div className="mockup-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <div className="mockup-address">{project.title.toLowerCase().replace(/\s+/g, '')}.dev</div>
-        </div>
+
         
         <div className="mockup-screen">
           {index === 0 ? (
             <video 
-              src={demoVideo} 
+              src={geeoVideo} 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="project-video"
+            />
+          ) : index === 1 ? (
+            <video 
+              src={goldVideo} 
               autoPlay 
               muted 
               loop 
@@ -144,30 +147,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
           )}
         </div>
 
-        {/* Floating UI Cards - Only show on active project for performance */}
-        {isActive && (
-          <>
-            <motion.div 
-              className="floating-card info-card"
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              <div className="card-icon">⚡</div>
-              <div className="card-text">High Performance</div>
-            </motion.div>
 
-            <motion.div 
-              className="floating-card stats-card"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              <div className="card-icon">📊</div>
-              <div className="card-text">Optimized UX</div>
-            </motion.div>
-          </>
-        )}
       </motion.div>
     </motion.div>
   );
@@ -228,11 +208,6 @@ export default function Projects() {
                 />
               ))}
               
-              {/* Global Background Ambient Effects */}
-              <div className="visual-background">
-                <div className="glow-sphere purple" style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }} />
-                <div className="glow-sphere blue" style={{ transform: `translate(${-mousePos.x}px, ${-mousePos.y}px)` }} />
-              </div>
             </div>
           </div>
         </div>
