@@ -57,9 +57,6 @@ function ExperienceItem({ item, index, isActive, onSelect }) {
                     playsInline 
                     className="experience__media-video"
                   />
-                  <div className="experience__media-overlay">
-                    <span>Project Showcase</span>
-                  </div>
                 </div>
               ) : (
                 <div className="experience__media-placeholder">
