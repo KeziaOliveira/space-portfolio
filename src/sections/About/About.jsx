@@ -8,7 +8,7 @@ export default function About() {
       <div className="section__container">
         <div className="about__content">
           <span className="section__label">Sobre</span>
-          <h2 className="section__title">Quem é Kezia</h2>
+          <h2 className="section__title">Sobre</h2>
           <div className="about__text">
             {about.paragraphs.map((paragraph, index) => (
               <p key={index} className="about__paragraph">

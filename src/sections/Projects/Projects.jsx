@@ -6,6 +6,8 @@ import './Projects.css';
 // Import the real project videos
 import geeoVideo from '../../assets/videos/projects_videos/Geeo_video.mp4';
 import goldVideo from '../../assets/videos/projects_videos/Gold_video.mp4';
+import glensoVideo from '../../assets/videos/projects_videos/Glenso_video.mp4';
+import scoreVideo from '../../assets/videos/projects_videos/Scoreboard_video.mp4';
 
 const ProjectCard = ({ project, index, setActiveProject }) => {
   const ref = useRef(null);
@@ -42,21 +44,21 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
         ))}
       </div>
 
-      <div className="project-impact">
+      {/* <div className="project-impact">
         <span className="impact-label">Impacto Principal</span>
         <p className="impact-text">
           {project.impact || "Otimização de fluxos e melhoria na experiência do usuário final."}
         </p>
-      </div>
+      </div> */}
 
-      <div className="project-progress-container">
+      {/* <div className="project-progress-container">
         <motion.div 
           className="project-progress-bar"
           initial={{ width: 0 }}
           animate={{ width: isInView ? '100%' : '0%' }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         />
-      </div>
+      </div> */}
     </motion.div>
   );
 };
@@ -121,6 +123,24 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
           ) : index === 1 ? (
             <video 
               src={goldVideo} 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="project-video"
+            />
+          ) : index === 2 ? (
+            <video 
+              src={glensoVideo} 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="project-video"
+            />
+          ) : index === 3 ? (
+            <video 
+              src={scoreVideo} 
               autoPlay 
               muted 
               loop 

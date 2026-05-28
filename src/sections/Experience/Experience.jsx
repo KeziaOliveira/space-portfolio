@@ -34,16 +34,11 @@ function ExperienceItem({ item, index, isActive, onSelect }) {
           <div className="experience__grid">
             <div className="experience__text-side">
               <p className="experience__full-description">{item.description}</p>
-              
-              <div className="experience__achievements">
-                <h5>Impacto e Resultados</h5>
-                <ul>
-                  <li>Arquitetura de sistemas escaláveis</li>
-                  <li>Liderança técnica e mentoria</li>
-                  <li>Otimização de fluxos de CI/CD</li>
-                  <li>Design Systems modernos</li>
-                </ul>
-              </div>
+              {item.subDescription && item.subDescription.map((paragraph, pIndex) => (
+                <p key={pIndex} className="experience__sub-description">
+                  {paragraph}
+                </p>
+              ))}
             </div>
             
             <div className="experience__media-side">

@@ -31,7 +31,7 @@ export default function Hero({ onExplore }) {
         <div className="hero__bottom-left">
           <p className="hero__description">
             Desenvolvedora em construção de universos digitais<br />
-            Focada em interfaces que resolvem problemas reais — com código limpo, atenção ao detalhe e vontade de evoluir a cada projeto.
+            Transformando fluxos complexos em experiências intuitivas, funcionais e visualmente refinadas
           </p>
           
           <h1 className="hero__title">
