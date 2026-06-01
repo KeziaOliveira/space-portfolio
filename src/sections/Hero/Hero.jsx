@@ -29,17 +29,22 @@ export default function Hero({ onExplore }) {
 
       <div className="hero__container">
         <div className="hero__bottom-left">
+          {/* <p className="hero__description">
+            Developer building digital universes<br />
+            Transforming complex workflows into intuitive, functional, and visually refined experiences
+          </p> */}
           <p className="hero__description">
-            Desenvolvedora em construção de universos digitais<br />
-            Transformando fluxos complexos em experiências intuitivas, funcionais e visualmente refinadas
+            UX/UI Designer & Product Designer<br />
+            Transforming complex workflows into intuitive user experiences
           </p>
-          
+
           <h1 className="hero__title">
             <span className="hero__name-top">KEZIA</span>
             <span className="hero__name-bottom">OLIVEIRA</span>
           </h1>
         </div>
 
+        {/*
         <div className="hero__right">
           <button 
             className={`explore-button ${isHovered ? 'is-hovered' : ''} ${isLaunching ? 'is-launching' : ''}`}
@@ -69,6 +74,7 @@ export default function Hero({ onExplore }) {
             </div>
           </button>
         </div>
+        */}
       </div>
     </section>
   );

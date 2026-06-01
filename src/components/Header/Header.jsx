@@ -3,10 +3,10 @@ import { personal } from '../../data/content';
 import './Header.css';
 
 const navLinks = [
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Experiência', href: '#experiencia' },
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'About', href: '#sobre' },
+  { label: 'Experience', href: '#experiencia' },
+  { label: 'Projects', href: '#projetos' },
+  { label: 'Contact', href: '#contato' },
 ];
 
 export default function Header() {
@@ -45,8 +45,7 @@ export default function Header() {
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`} role="banner">
       <div className="header__container">
         <a href="#" className="header__logo" aria-label="Ir para o topo">
-          <span className="header__logo-icon">✦</span>
-          <span className="header__logo-text">{personal.name}</span>
+          <span className="header__logo-text">Kezia Oliveira</span>
         </a>
 
         <button

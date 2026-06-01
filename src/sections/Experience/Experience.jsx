@@ -34,11 +34,15 @@ function ExperienceItem({ item, index, isActive, onSelect }) {
           <div className="experience__grid">
             <div className="experience__text-side">
               <p className="experience__full-description">{item.description}</p>
-              {item.subDescription && item.subDescription.map((paragraph, pIndex) => (
-                <p key={pIndex} className="experience__sub-description">
-                  {paragraph}
-                </p>
-              ))}
+              {item.subDescription && (
+                <ul className="experience__bullet-list">
+                  {item.subDescription.map((paragraph, pIndex) => (
+                    <li key={pIndex} className="experience__sub-description">
+                      {paragraph}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             
             <div className="experience__media-side">
@@ -113,14 +117,13 @@ export default function Experience() {
   return (
     <section id="experiencia" className="section experience" aria-label="Experiência Profissional">
       <div className="experience__tech-wrapper">
-        <TechCarousel />
+        {/* <TechCarousel /> */}
       </div>
       <div className="experience__container">
         <div className="experience__intro">
-          <span className="section__label">Trajetória</span>
-          <h2 className="section__title">Experiência Profissional</h2>
+          <h2 className="section__title">Experience</h2>
           <p className="section__subtitle">
-            Uma jornada focada em criar experiências digitais memoráveis e soluções técnicas robustas.
+            A journey focused on creating memorable digital experiences and robust technical solutions.
           </p>
         </div>
         

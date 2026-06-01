@@ -7,34 +7,38 @@ export default function About() {
     <section id="sobre" className="section about" aria-label="Sobre mim">
       <div className="section__container">
         <div className="about__content">
-          <span className="section__label">Sobre</span>
-          <h2 className="section__title">Sobre</h2>
-          <div className="about__text">
-            {about.paragraphs.map((paragraph, index) => (
-              <p key={index} className="about__paragraph">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {/* <span className="section__label">Sobre</span> */}
+          <h2 className="section__title">About</h2>
+          <div className="about__body">
+            <div className="about__text">
+              {about.paragraphs.map((paragraph, index) => (
+                <p key={index} className="about__paragraph">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
 
-          <div className="about__stats">
-            <div className="stat__item">
-              <span className="stat__number">
-                <Counter end={42} suffix="+" />
-              </span>
-              <span className="stat__label">projetos desenvolvidos</span>
-            </div>
-            <div className="stat__item">
-              <span className="stat__number">
-                <Counter end={8} suffix="+" />
-              </span>
-              <span className="stat__label">anos de experiência</span>
-            </div>
-            <div className="stat__item">
-              <span className="stat__number">
-                <Counter end={60} suffix="+" />
-              </span>
-              <span className="stat__label">clientes atendidos</span>
+            <div className="about__stats">
+              <div className="stat__item">
+                <span className="stat__number">
+                  <Counter end={42} suffix="+" />
+                </span>
+                <span className="stat__label">developed projects</span>
+              </div>
+              <div className="stat__item">
+                <span className="stat__number">
+                  <Counter end={8} suffix="+" />
+                </span>
+                <span className="stat__label">years of experience</span>
+              </div>
+              {/*
+              <div className="stat__item">
+                <span className="stat__number">
+                  <Counter end={60} suffix="+" />
+                </span>
+                <span className="stat__label">clientes atendidos</span>
+              </div>
+              */}
             </div>
           </div>
         </div>

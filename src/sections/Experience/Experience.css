@@ -1,9 +1,10 @@
 .experience {
   position: relative;
   background: #ffffff; /* Seção inteira clara como solicitado anteriormente */
-  padding: var(--space-32) 0;
+  padding: var(--space-48) 0 var(--space-32) 0; /* Aumentado padding top */
   overflow: visible; 
   color: #0f172a; /* Texto escuro profissional */
+  padding-top: 48px;
 }
 
 .experience__tech-wrapper {
@@ -141,9 +142,30 @@
   font-weight: 400;
 }
 
+.experience__bullet-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
 .experience__sub-description {
-  margin-top: var(--space-2); 
+  position: relative;
+  padding-left: var(--space-5);
   font-size: var(--font-size-base);
+  color: #475569;
+  line-height: 1.5;
+}
+
+.experience__sub-description::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .experience__achievements h5 {

@@ -65,14 +65,6 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
 
 const VisualLayer = ({ project, index, activeProject, mousePos }) => {
   const isActive = activeProject === index;
-  
-  // Define gradients for placeholders based on index
-  const gradients = [
-    'radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
-    'radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
-    'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.4) 0%, transparent 70%)',
-    'radial-gradient(circle at 30% 80%, rgba(236, 72, 153, 0.4) 0%, transparent 70%)',
-  ];
 
   return (
     <motion.div
@@ -113,7 +105,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
         <div className="mockup-screen">
           {index === 0 ? (
             <video 
-              src={geeoVideo} 
+              src={glensoVideo} 
               autoPlay 
               muted 
               loop 
@@ -122,7 +114,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
             />
           ) : index === 1 ? (
             <video 
-              src={goldVideo} 
+              src={scoreVideo} 
               autoPlay 
               muted 
               loop 
@@ -131,7 +123,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
             />
           ) : index === 2 ? (
             <video 
-              src={glensoVideo} 
+              src={goldVideo} 
               autoPlay 
               muted 
               loop 
@@ -140,7 +132,7 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
             />
           ) : index === 3 ? (
             <video 
-              src={scoreVideo} 
+              src={geeoVideo}
               autoPlay 
               muted 
               loop 
@@ -159,10 +151,6 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
                 </motion.div>
                 <p>Visualizing {project.title}...</p>
               </div>
-              <div 
-                className="ambient-glow" 
-                style={{ background: gradients[index % gradients.length] }}
-              />
             </div>
           )}
         </div>
@@ -197,7 +185,7 @@ export default function Projects() {
         <div className="content-side">
           <div className="content-intro">
             <span className="section-label">Showcase</span>
-            <h2 className="section-title">Trabalhos Selecionados</h2>
+            <h2 className="section-title">Selected Works</h2>
           </div>
           
           <div className="projects-list">

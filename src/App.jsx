@@ -38,6 +38,7 @@ export default function App() {
 
         <Contact />
 
+        {/* 
         <div style={{ textAlign: 'center', padding: '4rem 0 2rem', position: 'relative', zIndex: 20, pointerEvents: 'auto' }}>
           <button 
             onClick={() => setIsSpaceGameOpen(true)}
@@ -69,6 +70,7 @@ export default function App() {
             🎮 Jogar Space Invaders
           </button>
         </div>
+        */}
       </main>
 
       <Footer />
