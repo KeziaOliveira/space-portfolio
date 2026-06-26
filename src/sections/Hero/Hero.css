@@ -189,9 +189,9 @@
 
 .explore-button__text-path {
   fill: #fff;
-  font-size: 7.2px; /* Ajustado para o novo tamanho */
+  font-size: 7.2px;
   font-weight: 500;
-  letter-spacing: 2.5px;
+  letter-spacing: 4.6px;
   text-transform: uppercase;
   opacity: 0.5;
   transition: opacity var(--transition-base);

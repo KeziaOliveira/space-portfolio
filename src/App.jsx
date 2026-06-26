@@ -44,6 +44,7 @@ function MainContent({ onExplore, onOpenGame }) {
           <Experience />
           <Projects />
           <Contact />
+          {/* SPACE INVADERS BUTTON — temporariamente desativado
           <div style={{ textAlign: 'center', padding: '4rem 0 2rem', position: 'relative', zIndex: 20, pointerEvents: 'auto' }}>
             <button
               onClick={onOpenGame}
@@ -75,6 +76,7 @@ function MainContent({ onExplore, onOpenGame }) {
               🎮 Jogar Space Invaders
             </button>
           </div>
+          */}
         </motion.div>
       </AnimatePresence>
     </main>

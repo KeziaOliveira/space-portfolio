@@ -49,9 +49,9 @@ export const content = {
 
     experience: [
       {
-        company: 'Electrical Tooling System – Vale',
+        company: 'ETS – Vale',
         role: 'Fullstack Developer',
-        period: '2021 — 2023',
+        period: '2021 — 2025',
         summary:
           'Fullstack platform for electrical equipment and PPE management at Vale\'s industrial operations — interactive interfaces, REST API integrations, real-time data flows, and full-stack implementation from authentication to data persistence. The system generated ~R$31,000 in annual savings and significantly reduced PPE wait times for field teams.',
         description:
@@ -80,7 +80,7 @@ export const content = {
       {
         company: 'Ecommerce',
         role: 'Frontend Developer',
-        period: '2026 — 2027',
+        period: '2025 — 2026',
         summary:
           'E-commerce platform for school canteens with QR code access, full purchasing flow, and integrated company payment voucher. Covered catalog, cart, checkout, and dual-view order tracking for customers and store operators — fully responsive with a focus on operational clarity.',
         description:
@@ -160,8 +160,8 @@ export const content = {
       },
       contact: {
         title: 'Contato',
-        subtitle:
-          'Vamos construir algo incrível juntos. Estou aberta a oportunidades, freela e boas conversas.',
+        // subtitle:
+        //   'Vamos construir algo incrível juntos. Estou aberta a oportunidades, freela e boas conversas.',
       },
     },
 
@@ -176,9 +176,9 @@ export const content = {
 
     experience: [
       {
-        company: 'Sistema de Ferramentaria Elétrica – Vale',
+        company: 'SFE – Vale',
         role: 'Desenvolvedora Fullstack',
-        period: '2021 — 2023',
+        period: '2021 — 2025',
         summary:
           'Plataforma fullstack para gerenciamento de ferramentaria elétrica e EPIs nas operações da Vale — interfaces interativas, integrações REST, fluxos em tempo real e stack completo do frontend ao backend. O sistema gerou ~R$31 mil em economia anual e reduziu o tempo de espera dos trabalhadores por EPIs.',
         description:
@@ -207,7 +207,7 @@ export const content = {
       {
         company: 'E-commerce',
         role: 'Desenvolvedora Frontend',
-        period: '2026 — 2027',
+        period: '2025 — 2026',
         summary:
           'Plataforma de e-commerce para cantinas escolares com acesso por QR Code, fluxo completo de compras e ticket de pagamento integrado. Catálogo, carrinho, checkout e rastreamento de pedidos em duas visões — comprador e loja — com responsividade total e foco em clareza operacional.',
         description:

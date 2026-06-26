@@ -74,7 +74,7 @@ export default function Hero({ onExplore }) {
                 </defs>
                 <text className="explore-button__text-path">
                   <textPath xlinkHref="#circlePath" startOffset="0%">
-                    NAVEGAR EM MODO EXPLORAÇÃO • NAVEGAR EM MODO EXPLORAÇÃO •
+                    NAVEGAR EM MODO EXPLORAÇÃO •
                   </textPath>
                 </text>
               </svg>

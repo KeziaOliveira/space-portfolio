@@ -21,7 +21,7 @@
   width: 100%;
   overflow: hidden;
   /* Espaço generoso para o tooltip e animação flutuante */
-  padding: 80px 0 40px 0;
+  padding: 60px 0 28px 0;
 }
 
 .tech-carousel__track {

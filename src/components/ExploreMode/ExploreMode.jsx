@@ -830,10 +830,10 @@ function GrasshopperCTA({ onOpenGame, alreadyRevealed, onReveal }) {
 
 // ─── Componente Principal ─────────────────────────────────────────────────────
 
-export default function ExploreMode({ onClose, onOpenGame }) {
+export default function ExploreMode({ onClose/*, onOpenGame*/ }) {
   const [activePanelId, setActivePanelId] = useState(null);
   const [flyingToId,    setFlyingToId]    = useState(null);
-  const [ctaRevealed,   setCtaRevealed]   = useState(false);
+  // const [ctaRevealed, setCtaRevealed] = useState(false);
   const planetPosRefs    = useRef({});
   const updatePlanetPos  = useCallback((id, pos) => {
     planetPosRefs.current[id] = pos;
@@ -976,9 +976,11 @@ export default function ExploreMode({ onClose, onOpenGame }) {
               </div>
             </div>
           </div>
+          {/* GRASSHOPPER CTA — temporariamente desativado
           {activePanelId === 'contato' && (
             <GrasshopperCTA onOpenGame={onOpenGame} alreadyRevealed={ctaRevealed} onReveal={() => setCtaRevealed(true)} />
           )}
+          */}
         </div>
       )}
     </div>

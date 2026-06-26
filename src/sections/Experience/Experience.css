@@ -1,10 +1,9 @@
 .experience {
   position: relative;
-  background: #ffffff; /* Seção inteira clara como solicitado anteriormente */
-  padding: var(--space-48) 0 var(--space-32) 0; /* Aumentado padding top */
-  overflow: visible; 
-  color: #0f172a; /* Texto escuro profissional */
-  padding-top: 48px;
+  background: #ffffff;
+  padding: 0 0 var(--space-32) 0;
+  overflow: visible;
+  color: #0f172a;
 }
 
 .experience__tech-wrapper {

@@ -45,12 +45,12 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
         ))}
       </div>
 
-      <div className="project-impact">
+      {/* <div className="project-impact">
         <span className="impact-label">Impacto Principal</span>
         <p className="impact-text">
           {project.impact || "Otimização de fluxos e melhoria na experiência do usuário final."}
         </p>
-      </div>
+      </div> */}
 
       <div className="project-progress-container">
         <motion.div
