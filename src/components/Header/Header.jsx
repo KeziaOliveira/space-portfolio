@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { personal } from '../../data/content';
+import { useLanguage } from '../../context/LanguageContext';
 import './Header.css';
 
-const navLinks = [
-  { label: 'About', href: '#sobre' },
-  { label: 'Experience', href: '#experiencia' },
-  { label: 'Projects', href: '#projetos' },
-  { label: 'Contact', href: '#contato' },
+const navItems = [
+  { key: 'about', href: '#sobre' },
+  { key: 'experience', href: '#experiencia' },
+  { key: 'projects', href: '#projetos' },
+  { key: 'contact', href: '#contato' },
 ];
 
 export default function Header() {
+  const { lang, toggleLang, t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -18,8 +19,7 @@ export default function Header() {
     const onScroll = () => {
       setScrolled(window.scrollY > 32);
 
-      // Scroll spy
-      const sections = navLinks.map((l) => l.href.slice(1));
+      const sections = navItems.map((l) => l.href.slice(1));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el) {
@@ -37,9 +37,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+  const handleLinkClick = () => setMenuOpen(false);
 
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`} role="banner">
@@ -67,18 +65,34 @@ export default function Header() {
           aria-label="Navegação principal"
         >
           <ul className="header__list">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+            {navItems.map((item) => (
+              <li key={item.href}>
                 <a
-                  href={link.href}
-                  className={`header__link ${activeSection === link.href.slice(1) ? 'header__link--active' : ''}`}
+                  href={item.href}
+                  className={`header__link ${activeSection === item.href.slice(1) ? 'header__link--active' : ''}`}
                   onClick={handleLinkClick}
                 >
-                  {link.label}
+                  {t.ui.nav[item.key]}
                 </a>
               </li>
             ))}
           </ul>
+
+          <div className="header__lang-toggle" role="group" aria-label="Idioma">
+            <button
+              className={`header__lang-btn ${lang === 'en' ? 'is-active' : ''}`}
+              onClick={() => lang !== 'en' && toggleLang()}
+            >
+              EN
+            </button>
+            <span className="header__lang-sep" aria-hidden="true">/</span>
+            <button
+              className={`header__lang-btn ${lang === 'pt' ? 'is-active' : ''}`}
+              onClick={() => lang !== 'pt' && toggleLang()}
+            >
+              PT
+            </button>
+          </div>
         </nav>
       </div>
     </header>

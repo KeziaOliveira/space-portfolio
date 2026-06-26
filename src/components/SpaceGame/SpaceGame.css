@@ -1,21 +1,20 @@
-.space-game-overlay {
+.sg-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #050505;
+  inset: 0;
+  background: #050508;
   z-index: 10000;
   display: flex;
   flex-direction: column;
+  font-family: 'Courier New', monospace;
 }
 
-.space-game__header {
+/* ── Header ── */
+.sg-header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  padding: 1.5rem 2rem;
+  right: 0;
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,81 +22,259 @@
   pointer-events: none;
 }
 
-.space-game__close-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 0.5rem 1rem;
+.sg-close {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  padding: 0.45rem 1rem;
   border-radius: 20px;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  transition: all 0.2s;
   pointer-events: auto;
 }
-
-.space-game__close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+.sg-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
-.space-game__score {
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
+.sg-hud {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.sg-wave-label {
+  color: #60a5fa;
+  font-size: 0.9rem;
   font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.space-game__ui {
+.sg-score-label {
+  color: #fde68a;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ── Modals ── */
+.sg-modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  z-index: 10002;
+  padding: 2rem;
+}
+
+.sg-modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 15, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: -1;
+}
+
+.sg-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #60a5fa;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+}
+.sg-title--error   { color: #f87171; text-shadow: 0 0 30px rgba(248, 113, 113, 0.5); }
+.sg-title--victory { color: #34d399; text-shadow: 0 0 30px rgba(52, 211, 153, 0.5); }
+
+.sg-subtitle {
+  color: #94a3b8;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 380px;
+}
+
+.sg-controls-hint {
+  display: flex;
+  gap: 2rem;
+  color: #475569;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+}
+
+.sg-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.sg-scores__title {
+  color: #475569;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.sg-scores__entry {
+  color: #fde68a;
+  font-size: 0.9rem;
+}
+
+.sg-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+  transition: all 0.2s;
+  min-width: 160px;
+}
+.sg-btn:hover {
+  background: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.sg-btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #64748b;
+}
+.sg-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  box-shadow: none;
+}
+
+/* ── Kill message ── */
+.sg-kill-msg {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #4ade80;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  z-index: 10003;
+  animation: sg-floatup 1.8s ease-out forwards;
+  pointer-events: none;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+}
+
+@keyframes sg-floatup {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(0); }
+  15%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-28px); }
+}
+
+/* ── Wave banner ── */
+.sg-wave-msg {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(10, 10, 26, 0.85);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  padding: 3rem;
-  border-radius: 1rem;
+  color: #f59e0b;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   text-align: center;
-  z-index: 10002;
-  backdrop-filter: blur(10px);
-  color: white;
+  z-index: 10003;
+  pointer-events: none;
+  animation: sg-banner 2.6s ease-in-out forwards;
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+  padding: 0 1rem;
+}
+
+@keyframes sg-banner {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  15%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  75%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* ── Touch controls ── */
+.sg-touch {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 320px;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1rem 1.5rem 1.5rem;
+  z-index: 10003;
+  pointer-events: none;
 }
 
-.space-game__ui h2 {
-  font-size: 2.5rem;
-  margin: 0;
-  color: #3b82f6;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.sg-touch__dirs {
+  display: flex;
+  gap: 0.6rem;
+  pointer-events: auto;
 }
 
-.space-game__ui p {
-  color: #94a3b8;
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.space-game__btn {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+.sg-touch__btn,
+.sg-touch__shoot {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.3rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  pointer-events: auto;
+  transition: background 0.1s;
+}
+.sg-touch__btn:active,
+.sg-touch__shoot:active {
+  background: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.6);
 }
 
-.space-game__btn:hover {
-  background: #3b82f6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+.sg-touch__shoot {
+  width: 76px;
+  height: 76px;
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+.sg-touch__shoot:active {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Hide touch controls on desktop with fine pointer */
+@media (pointer: fine) {
+  .sg-touch {
+    display: none;
+  }
 }

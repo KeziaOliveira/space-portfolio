@@ -101,6 +101,49 @@
   width: 100%;
 }
 
+/* Language Toggle */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.header__lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: var(--space-4);
+}
+
+.header__lang-sep {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  opacity: 0.5;
+}
+
+.header__lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  font-family: inherit;
+}
+
+.header__lang-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.header__lang-btn.is-active {
+  color: var(--color-accent-primary);
+  cursor: default;
+}
+
 /* Hamburger Toggle */
 .header__toggle {
   display: none;

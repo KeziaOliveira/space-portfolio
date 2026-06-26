@@ -1,6 +1,7 @@
 import React, { useRef, Suspense, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import * as THREE from 'three';
 
 function EngineFire({ active }) {
@@ -28,32 +29,70 @@ function EngineFire({ active }) {
 
 function Model({ isHovered, isLaunching }) {
   const meshRef = useRef();
-  const obj = useLoader(OBJLoader, '/spaceship/SpaceShuttle.obj');
-  const texture = useLoader(THREE.TextureLoader, '/spaceship/SpaceShuttle_BaseColor.png');
-
-  obj.traverse((child) => {
-    if (child.isMesh) {
-      child.material = new THREE.MeshStandardMaterial({
-        map: texture,
-        metalness: 0.5,
-        roughness: 0.5,
-      });
-    }
+  const materials = useLoader(MTLLoader, '/spaceship/Lo_poly_Spaceship_01_by_Liz_Reddington.mtl');
+  const obj = useLoader(OBJLoader, '/spaceship/Lo_poly_Spaceship_01_by_Liz_Reddington.obj', (loader) => {
+    materials.preload();
+    loader.setMaterials(materials);
   });
+
+  // Auto-normaliza o modelo para caber em ~0.7 unidades, independente do tamanho nativo
+  const model = useMemo(() => {
+    const cloned = obj.clone(true);
+    cloned.scale.setScalar(1);
+    const box = new THREE.Box3().setFromObject(cloned);
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const normalizedScale = 1.5 / maxDim;
+    cloned.scale.setScalar(normalizedScale);
+    const box2 = new THREE.Box3().setFromObject(cloned);
+    const center = box2.getCenter(new THREE.Vector3());
+    cloned.position.sub(center);
+
+    // Boost de brilho: emissivo baseado na cor original de cada mesh
+    cloned.traverse((child) => {
+      if (!child.isMesh || !child.material) return;
+      const applyEmissive = (mat) => {
+        const m = mat.clone();
+        m.emissive = m.color ? m.color.clone().multiplyScalar(0.5) : new THREE.Color(0.3, 0.3, 0.3);
+        m.emissiveIntensity = 0.7;
+        m.needsUpdate = true;
+        return m;
+      };
+      child.material = Array.isArray(child.material)
+        ? child.material.map(applyEmissive)
+        : applyEmissive(child.material);
+    });
+
+    return cloned;
+  }, [obj]);
 
   useEffect(() => {
     if (!isLaunching && meshRef.current) {
       meshRef.current.position.set(0, 0, 0);
-      meshRef.current.scale.set(0.18, 0.18, 0.18);
     }
   }, [isLaunching]);
+
+  // Rotação base definida pelo usuário no JSX
+  const BASE_ROT = [4.5, 1.57, 4.57];
 
   useFrame((state, delta) => {
     if (meshRef.current) {
       if (!isLaunching) {
-        const targetRotationZ = isHovered ? Math.PI - Math.PI / 1.5 : Math.PI - Math.PI / 3;
-        meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, targetRotationZ, 0.05);
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.05;
+        // Zoom suave no hover
+        const targetScale = isHovered ? 1.22 : 1.0;
+        const newScale = THREE.MathUtils.lerp(meshRef.current.scale.x, targetScale, 0.08);
+        meshRef.current.scale.setScalar(newScale);
+
+        // Tilt diagonal no hover — pequena inclinação que sugere direção de voo
+        const targetX = isHovered ? BASE_ROT[0] - 0.28 : BASE_ROT[0];
+        const targetY = isHovered ? BASE_ROT[1] + 0.22 : BASE_ROT[1];
+        const targetZ = BASE_ROT[2]; // Z fica fixo — sem giro
+        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.08);
+        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.08);
+        meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, targetZ, 0.08);
+
+        // Float suave
+        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.04;
       } else {
         meshRef.current.position.z += delta * 20;
         meshRef.current.position.x += delta * 15;
@@ -64,16 +103,9 @@ function Model({ isHovered, isLaunching }) {
   });
 
   return (
-    <group ref={meshRef} rotation={[Math.PI / 2, Math.PI, Math.PI - Math.PI / 3]}>
-      <primitive 
-        object={obj} 
-        scale={[0.18, 0.18, 0.18]} 
-      />
-      {/* Motores acesos no lançamento */}
-      <group position={[0.75, -1.8, -0.9]}>
-        <EngineFire active={isLaunching} />
-      </group>
-      <group position={[-0.75, -1.8, -0.9]}>
+    <group ref={meshRef} rotation={[4.5, 1.57, 4.57]}>
+      <primitive object={model} />
+      <group position={[0, -0.4, 0]}>
         <EngineFire active={isLaunching} />
       </group>
     </group>
@@ -84,8 +116,10 @@ export default function SpaceshipButtonIcon({ isHovered, isLaunching }) {
   return (
     <div style={{ width: '100%', height: '100%', pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0.5, 3], fov: 45 }} gl={{ alpha: true }}>
-        <ambientLight intensity={1} />
-        <pointLight position={[5, 5, 5]} intensity={2} />
+        <ambientLight intensity={3} />
+        <pointLight position={[3, 3, 4]} intensity={4} />
+        <pointLight position={[-3, 1, 3]} intensity={2} color="#c8d8ff" />
+        <pointLight position={[0, -2, 3]} intensity={1.5} />
         <Suspense fallback={null}>
           <Model isHovered={isHovered} isLaunching={isLaunching} />
         </Suspense>

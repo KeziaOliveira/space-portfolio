@@ -1,52 +1,62 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
+import { AnimatedBlock } from '../../components/AnimatedText/AnimatedText';
 import SpaceshipButtonIcon from './SpaceshipButtonIcon';
 import './Hero.css';
 
 export default function Hero({ onExplore }) {
+  const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
 
   const handleLaunch = () => {
     setIsLaunching(true);
-    // Pequeno atraso para a animação da nave decolando antes de mudar de cena
     setTimeout(() => {
       onExplore();
-      // Resetamos o estado de lançamento para que o Hero esteja visível ao voltar
       setTimeout(() => setIsLaunching(false), 500);
     }, 1200);
   };
 
   return (
-    <section 
-      id="hero" 
-      className={`hero ${isLaunching ? 'hero--launching' : ''}`} 
+    <section
+      id="hero"
+      className={`hero ${isLaunching ? 'hero--launching' : ''}`}
       aria-label="Apresentação"
     >
-      {/* Starfield background 2D (Fallback para mobile/perf) */}
       <div className="hero__stars" aria-hidden="true"></div>
       <div className="hero__stars hero__stars--medium" aria-hidden="true"></div>
       <div className="hero__stars hero__stars--large" aria-hidden="true"></div>
 
       <div className="hero__container">
         <div className="hero__bottom-left">
-          {/* <p className="hero__description">
-            Developer building digital universes<br />
-            Transforming complex workflows into intuitive, functional, and visually refined experiences
-          </p> */}
-          <p className="hero__description">
-            UX/UI Designer & Product Designer<br />
-            Transforming complex workflows into intuitive user experiences
-          </p>
+          <AnimatedBlock as="p" className="hero__description">
+            {t.ui.hero.description}<br />
+            {t.ui.hero.subheadline}
+          </AnimatedBlock>
 
           <h1 className="hero__title">
-            <span className="hero__name-top">KEZIA</span>
-            <span className="hero__name-bottom">OLIVEIRA</span>
+            <motion.span
+              className="hero__name-top"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            >
+              KEZIA
+            </motion.span>
+            <motion.span
+              className="hero__name-bottom"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+            >
+              OLIVEIRA
+            </motion.span>
           </h1>
         </div>
 
-        {/*
         <div className="hero__right">
-          <button 
+          <button
             className={`explore-button ${isHovered ? 'is-hovered' : ''} ${isLaunching ? 'is-launching' : ''}`}
             onClick={handleLaunch}
             onMouseEnter={() => setIsHovered(true)}
@@ -74,11 +84,7 @@ export default function Hero({ onExplore }) {
             </div>
           </button>
         </div>
-        */}
       </div>
     </section>
   );
 }
-
-
-

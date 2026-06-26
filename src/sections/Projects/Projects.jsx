@@ -1,19 +1,20 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { projects } from '../../data/content';
+import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
+import { AnimatedHeading } from '../../components/AnimatedText/AnimatedText';
 import './Projects.css';
 
-// Import the real project videos
 import geeoVideo from '../../assets/videos/projects_videos/Geeo_video.mp4';
 import goldVideo from '../../assets/videos/projects_videos/Gold_video.mp4';
 import glensoVideo from '../../assets/videos/projects_videos/Glenso_video.mp4';
 import scoreVideo from '../../assets/videos/projects_videos/Scoreboard_video.mp4';
 
+const projectVideos = [glensoVideo, scoreVideo, goldVideo, geeoVideo];
+
 const ProjectCard = ({ project, index, setActiveProject }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    // Trigger when the title reaches the new center position (57.5% from top)
-    margin: "-57.5% 0px -42.5% 0px", 
+    margin: "-57.5% 0px -42.5% 0px",
     once: false
   });
 
@@ -35,30 +36,30 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
         <span className="project-number">0{index + 1}</span>
         <h3 className="project-title">{project.title}</h3>
       </div>
-      
+
       <p className="project-description">{project.description}</p>
-      
+
       <div className="project-tags">
         {project.tags.map(tag => (
           <span key={tag} className="project-tag">{tag}</span>
         ))}
       </div>
 
-      {/* <div className="project-impact">
+      <div className="project-impact">
         <span className="impact-label">Impacto Principal</span>
         <p className="impact-text">
           {project.impact || "Otimização de fluxos e melhoria na experiência do usuário final."}
         </p>
-      </div> */}
+      </div>
 
-      {/* <div className="project-progress-container">
-        <motion.div 
+      <div className="project-progress-container">
+        <motion.div
           className="project-progress-bar"
           initial={{ width: 0 }}
           animate={{ width: isInView ? '100%' : '0%' }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         />
-      </div> */}
+      </div>
     </motion.div>
   );
 };
@@ -70,17 +71,17 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
     <motion.div
       className="visual-layer"
       initial={false}
-      animate={{ 
+      animate={{
         opacity: isActive ? 1 : 0,
         scale: isActive ? 1 : 0.85,
-        y: isActive ? 0 : 60, // Stronger "lift"
-        x: isActive ? 0 : 40, // Stronger "approach" (moves from right to left)
+        y: isActive ? 0 : 60,
+        x: isActive ? 0 : 40,
         zIndex: isActive ? 10 : 0,
         filter: 'none',
       }}
-      transition={{ 
+      transition={{
         type: "spring",
-        stiffness: 120, // Snappier spring
+        stiffness: 120,
         damping: 22,
         mass: 1,
       }}
@@ -93,56 +94,27 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
         pointerEvents: isActive ? 'auto' : 'none',
       }}
     >
-      <motion.div 
+      <motion.div
         className="mockup-frame"
         style={{
           rotateX: isActive ? mousePos.y * -0.03 : 0,
           rotateY: isActive ? mousePos.x * 0.03 : 0,
         }}
       >
-
-        
         <div className="mockup-screen">
-          {index === 0 ? (
-            <video 
-              src={glensoVideo} 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className="project-video"
-            />
-          ) : index === 1 ? (
-            <video 
-              src={scoreVideo} 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className="project-video"
-            />
-          ) : index === 2 ? (
-            <video 
-              src={goldVideo} 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className="project-video"
-            />
-          ) : index === 3 ? (
-            <video 
-              src={geeoVideo}
-              autoPlay 
-              muted 
-              loop 
+          {projectVideos[index] ? (
+            <video
+              src={projectVideos[index]}
+              autoPlay
+              muted
+              loop
               playsInline
               className="project-video"
             />
           ) : (
             <div className="project-placeholder">
               <div className="placeholder-content">
-                <motion.div 
+                <motion.div
                   className="placeholder-logo"
                   animate={{ scale: isActive ? [1, 1.05, 1] : 1 }}
                   transition={{ duration: 4, repeat: Infinity }}
@@ -154,23 +126,21 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
             </div>
           )}
         </div>
-
-
       </motion.div>
     </motion.div>
   );
 };
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [activeProject, setActiveProject] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const x = (clientX / window.innerWidth - 0.5) * 20;
-      const y = (clientY / window.innerHeight - 0.5) * 20;
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePos({ x, y });
     };
 
@@ -181,33 +151,31 @@ export default function Projects() {
   return (
     <section id="projetos" className="projects-showcase" ref={containerRef}>
       <div className="showcase-layout">
-        {/* Left Side: Scrolling Content */}
         <div className="content-side">
           <div className="content-intro">
-            <span className="section-label">Showcase</span>
-            <h2 className="section-title">Selected Works</h2>
+            <span className="section-label">{t.ui.projects.label}</span>
+            <AnimatedHeading as="h2" className="section-title">{t.ui.projects.title}</AnimatedHeading>
           </div>
-          
+
           <div className="projects-list">
-            {projects.map((project, index) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
+            {t.projects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
                 index={index}
                 setActiveProject={setActiveProject}
               />
             ))}
           </div>
-          
+
           <div className="content-spacer" />
         </div>
 
-        {/* Right Side: Sticky Visuals */}
         <div className="visual-side">
           <div className="sticky-wrapper">
             <div className="visual-showcase-container">
-              {projects.map((project, index) => (
-                <VisualLayer 
+              {t.projects.map((project, index) => (
+                <VisualLayer
                   key={project.id}
                   project={project}
                   index={index}
@@ -215,7 +183,6 @@ export default function Projects() {
                   mousePos={mousePos}
                 />
               ))}
-              
             </div>
           </div>
         </div>

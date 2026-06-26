@@ -1,4 +1,3 @@
-import { personal } from '../../data/content';
 import HeartIcon from '../../assets/icons-contact/heart-solid-full (1).svg';
 import './Footer.css';
 
@@ -47,7 +46,7 @@ export default function Footer() {
         </div>
 
         <p className="footer__copy" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: '500', color: '#cbd5e1' }}>
-          Made with <img src={HeartIcon} alt="heart" style={{ width: '20px', height: '20px', filter: 'invert(1) sepia(1) saturate(5) hue-rotate(300deg)' }} /> by {personal.name}
+          Made with <img src={HeartIcon} alt="heart" style={{ width: '20px', height: '20px', filter: 'invert(1) sepia(1) saturate(5) hue-rotate(300deg)' }} /> by Kezia
         </p>
       </div>
     </footer>
