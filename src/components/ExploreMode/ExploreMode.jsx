@@ -32,15 +32,15 @@ import EmailIcon    from '../../assets/icons-contact/envelope-solid-full (2).svg
 import GithubIcon   from '../../assets/icons-contact/square-github-brands-solid-full.svg';
 import LinkedinIcon from '../../assets/icons-contact/square-linkedin-brands-solid-full (1).svg';
 
-import glensoVideo    from '../../assets/videos/projects_videos/Glenso_video.mp4';
-import scoreVideo     from '../../assets/videos/projects_videos/Scoreboard_video.mp4';
-import goldVideo      from '../../assets/videos/projects_videos/Gold_video.mp4';
-import geeoVideo      from '../../assets/videos/projects_videos/Geeo_video.mp4';
+import glensoVideo        from '../../assets/videos/projects_videos/Glenso_video.mp4';
+import petrocapixabaVideo from '../../assets/videos/projects_videos/Petrocapixaba_Video.mp4';
+import scoreVideo         from '../../assets/videos/projects_videos/Scoreboard_video.mp4';
+import goldVideo          from '../../assets/videos/projects_videos/Gold_video.mp4';
 import sfeVideo       from '../../assets/videos/experience_videos/SFE_video.mp4';
 import escolaVideo    from '../../assets/videos/experience_videos/Escolaweb_video.mp4';
 import ecommerceVideo from '../../assets/videos/experience_videos/ecommerce-recording.mp4';
 
-const PROJECT_VIDEOS    = [glensoVideo, scoreVideo, goldVideo, geeoVideo];
+const PROJECT_VIDEOS    = [glensoVideo, petrocapixabaVideo, scoreVideo, goldVideo];
 const EXPERIENCE_VIDEOS = [sfeVideo, escolaVideo, ecommerceVideo];
 
 // ─── Sistema Solar ────────────────────────────────────────────────────────────
@@ -786,6 +786,7 @@ function GrasshopperModel3D() {
 }
 
 function GrasshopperCTA({ onOpenGame, alreadyRevealed, onReveal }) {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(alreadyRevealed);
   const wasRevealedRef = useRef(alreadyRevealed);
   const onRevealRef    = useRef(onReveal);
@@ -800,7 +801,7 @@ function GrasshopperCTA({ onOpenGame, alreadyRevealed, onReveal }) {
   return (
     <div className={`hud-game-cta${visible ? ' hud-game-cta--visible' : ''}`}>
       <div className="hud-game-cta__header">
-        <span className="hud-game-cta__badge">⚠ AMEAÇA DETECTADA</span>
+        <span className="hud-game-cta__badge">{t.ui.exploreMode.gameCtaBadge}</span>
       </div>
       <div className="hud-game-cta__row">
         <div className="hud-game-cta__viewer">
@@ -818,10 +819,10 @@ function GrasshopperCTA({ onOpenGame, alreadyRevealed, onReveal }) {
           </Canvas>
         </div>
         <p className="hud-game-cta__desc">
-          Uma frota de bugs foi detectada no perímetro. Os sistemas de contenção automática falharam. Precisamos de um operador para assumir o controle
+          {t.ui.exploreMode.gameCtaDesc}
         </p>
         <button className="hud-game-cta__btn" onClick={onOpenGame}>
-          ACEITAR MISSÃO
+          {t.ui.exploreMode.gameCtaButton}
         </button>
       </div>
     </div>
@@ -830,7 +831,10 @@ function GrasshopperCTA({ onOpenGame, alreadyRevealed, onReveal }) {
 
 // ─── Componente Principal ─────────────────────────────────────────────────────
 
+const NAV_KEY_BY_PLANET_ID = { sobre: 'about', experiencia: 'experience', projetos: 'projects', contato: 'contact' };
+
 export default function ExploreMode({ onClose/*, onOpenGame*/ }) {
+  const { t, lang, toggleLang } = useLanguage();
   const [activePanelId, setActivePanelId] = useState(null);
   const [flyingToId,    setFlyingToId]    = useState(null);
   // const [ctaRevealed, setCtaRevealed] = useState(false);
@@ -898,10 +902,25 @@ export default function ExploreMode({ onClose/*, onOpenGame*/ }) {
                 className={`explore__progress-item ${(activePanelId === p.id || flyingToId === p.id) ? 'is-active' : ''}`}
                 style={{ '--item-color': p.color }}
                 onClick={() => startFlight(p.id)}
-              >{p.label}</span>
+              >{t.ui.nav[NAV_KEY_BY_PLANET_ID[p.id]].toUpperCase()}</span>
             ))}
           </div>
-          <button className="explore__back-btn" onClick={onClose}>Voltar ao Portfólio</button>
+          <div className="header__lang-toggle" role="group" aria-label="Idioma">
+            <button
+              className={`header__lang-btn ${lang === 'en' ? 'is-active' : ''}`}
+              onClick={() => lang !== 'en' && toggleLang()}
+            >
+              EN
+            </button>
+            <span className="header__lang-sep" aria-hidden="true">/</span>
+            <button
+              className={`header__lang-btn ${lang === 'pt' ? 'is-active' : ''}`}
+              onClick={() => lang !== 'pt' && toggleLang()}
+            >
+              PT
+            </button>
+          </div>
+          <button className="explore__back-btn" onClick={onClose}>{t.ui.exploreMode.backToPortfolio}</button>
         </nav>
       </div>
 
@@ -938,15 +957,15 @@ export default function ExploreMode({ onClose/*, onOpenGame*/ }) {
 
       {!activePanelId && !flyingToId && (
         <div className="explore__hint">
-          Use as setinhas do teclado
+          {t.ui.exploreMode.hintKeyboard}
           <span className="explore__hint-key">←</span>
           <span className="explore__hint-key">→</span>
-          para navegar entre os planetas
+          {t.ui.exploreMode.hintNavigate}
           <span className="explore__hint-divider" />
-          Clique nos tópicos da barra para voar até eles
+          {t.ui.exploreMode.hintClickTopics}
           <span className="explore__hint-divider" />
           <span className="explore__hint-key">ESC</span>
-          Voltar ao portfólio
+          {t.ui.exploreMode.hintEscBack}
         </div>
       )}
 
@@ -961,11 +980,13 @@ export default function ExploreMode({ onClose/*, onOpenGame*/ }) {
           >
             <div className="explore__panel">
               <div className="hud-header">
-                <span className="hud-header__tag">MODO EXPLORAÇÃO</span>
-                <span className="hud-header__planet">{currentPlanet?.label}</span>
+                <span className="hud-header__tag">{t.ui.exploreMode.modeTag}</span>
+                <span className="hud-header__planet">
+                  {currentPlanet ? t.ui.nav[NAV_KEY_BY_PLANET_ID[currentPlanet.id]].toUpperCase() : ''}
+                </span>
                 <span className="hud-header__status">
                   <span className="hud-header__dot" />
-                  ORBITANDO
+                  {t.ui.exploreMode.orbiting}
                 </span>
               </div>
               <div className="hud-panel-scroll">

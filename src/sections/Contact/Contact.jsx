@@ -19,7 +19,7 @@ export default function Contact() {
         >
           {title}
         </AnimatedHeading>
-        <AnimatedBlock as="p" className="contact__subtitle" index={1} style={{ textAlign: 'left', width: '100%', color: '#94a3b8', fontSize: '1.25rem', marginBottom: 'var(--space-16)' }}>
+        <AnimatedBlock as="p" className="contact__subtitle" index={1} style={{ textAlign: 'center', width: '100%', color: '#94a3b8', fontSize: '1.25rem', marginBottom: 'var(--space-16)' }}>
           {subtitle}
         </AnimatedBlock>
 

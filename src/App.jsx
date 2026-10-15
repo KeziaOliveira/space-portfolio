@@ -27,14 +27,14 @@ const contentVariants = {
   },
 };
 
-function MainContent({ onExplore, onOpenGame }) {
+function MainContent({ onExplore, onOpenGame, freeze }) {
   const { lang } = useLanguage();
   return (
     <main id="main-content">
       <Hero onExplore={onExplore} />
       <AnimatePresence mode="wait">
         <motion.div
-          key={lang}
+          key={freeze ? 'frozen' : lang}
           variants={contentVariants}
           initial="hidden"
           animate="visible"
@@ -105,6 +105,7 @@ export default function App() {
       <MainContent
         onExplore={() => setIsExploreMode(true)}
         onOpenGame={() => setIsSpaceGameOpen(true)}
+        freeze={isExploreMode || isSpaceGameOpen}
       />
 
       <Footer />

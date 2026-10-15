@@ -11,10 +11,11 @@ export const content = {
         description: 'Developer building digital universes',
         subheadline:
           'Transforming complex workflows into intuitive, functional, and visually refined experiences',
+        exploreButtonRing: 'NAVIGATE IN EXPLORATION MODE •',
       },
       about: {
         label: 'About',
-        title: 'About',
+        title: 'My Journey',
         role: 'Frontend & Fullstack Developer',
         stats: {
           projects: 'developed projects',
@@ -29,21 +30,36 @@ export const content = {
       },
       projects: {
         label: 'Showcase',
-        title: 'Selected Works',
+        title: 'Some recent projects',
       },
       contact: {
         title: 'Contact',
         subtitle:
           "Let's build something great together. I'm open to opportunities, freelance work, and good conversations.",
       },
+      exploreMode: {
+        backToPortfolio: 'Back to Portfolio',
+        modeTag: 'EXPLORATION MODE',
+        orbiting: 'ORBITING',
+        hintKeyboard: 'Use the keyboard arrows',
+        hintNavigate: 'to navigate between planets',
+        hintClickTopics: 'Click the topics in the bar to fly to them',
+        hintEscBack: 'Back to portfolio',
+        gameCtaBadge: '⚠ THREAT DETECTED',
+        gameCtaDesc: 'A swarm of bugs has been detected in the perimeter. Automatic containment systems have failed. We need an operator to take control',
+        gameCtaButton: 'ACCEPT MISSION',
+      },
+      footer: {
+        madeWithPrefix: 'Made with',
+        madeWithSuffix: 'by Kezia',
+      },
     },
 
     about: {
       paragraphs: [
-        'Frontend and fullstack developer focused on building modern web applications that combine solid engineering, interface design, and user-centered thinking.',
-        'My stack centers on React, Angular, Node.js, TypeScript, and JavaScript — with experience across frontend and backend development, relational databases, and foundations in Python and Java.',
-        'I also bring hands-on experience in branding and visual design, which directly shapes how I approach UI architecture, product identity, and the relationship between aesthetics and function.',
-        'I\'ve worked across enterprise systems, management platforms, and immersive digital experiences — always turning complex workflows into intuitive, functional solutions.',
+        'I\'m Kezia, a frontend developer. I started in graphic design as a teenager and picked up code soon after, and the two grew together ever since. That\'s why I don\'t just implement screens: I design the interface, build it, and think through how it will actually be used.',
+        'Along the way, I\'ve delivered everything from internal systems and SaaS platforms to e-commerces, landing pages, and interactive 3D and AI experiences. Among the projects I\'m proudest of are a platform for Vale that digitized PPE control and generated around R$31k in annual savings, and modules for a school management SaaS used by educational institutions.',
+        'I hold a degree in Systems Analysis and Development, with a frontend specialization from Oracle and UX Design training from Google. I work mainly with React, Next.js, Angular, and TypeScript, and move into the backend with Node.js when a project calls for it. Outside of code, I also do branding, social media, and video editing, which helps me see the whole product, from the brand to the last click.',
       ],
     },
 
@@ -100,28 +116,30 @@ export const content = {
         title: 'Glenso',
         description:
           'Interactive AI assistant platform built with React and Three.js, exploring real-time conversational interfaces and immersive 3D elements. Responsible for frontend architecture, 3D integration, conversational interaction flows, and UI systems. Focused on balancing performance, visual engagement, and usability in a dynamic, interaction-heavy environment.',
-        tags: ['React', 'Three.js', '3D Interface', 'AI integrations'],
+        tags: ['React', 'Three.js', 'AI integrations'],
       },
       {
         id: 2,
-        title: 'Scoreboard',
+        title: 'Petrocapixaba',
         description:
-          'Real-time beach tennis scoreboard built with React and Supabase, supporting live match control and multi-screen score synchronization. Implemented authentication, real-time database sync, and responsive interfaces designed for fast interaction in time-sensitive environments.',
-        tags: ['React', 'Supabase', 'Live Sync', 'Authentication'],
+          'Institutional landing page and management system built for Petrocapixaba. Developed the full frontend, bringing together the public brand presentation and the company\'s internal operational management workflows, with a focus on performance and clear interface design.',
+        tags: ['React', 'TypeScript', 'Management System'],
+        link: 'https://petrocapixaba.com.br/',
       },
       {
         id: 3,
-        title: 'GOLD',
+        title: 'Scoreboard',
         description:
-          'Institutional web platform for GOLD — a diversity and inclusion project linked to SENAC. Built with React and Tailwind CSS, focused on accessibility, clear information hierarchy, and responsive design across different devices and user profiles.',
-        tags: ['React', 'JavaScript', 'Tailwind CSS', 'Accessibility'],
+          'Real-time beach tennis scoreboard built with React and Supabase, supporting live match control and multi-screen score synchronization. Implemented authentication, real-time database sync, and responsive interfaces designed for fast interaction in time-sensitive environments.',
+        tags: ['React', 'Supabase', 'Live Sync'],
       },
       {
         id: 4,
-        title: 'Geeo',
+        title: 'GOLD',
         description:
-          'Landing page for Geeo, a healthcare startup selected by the Centelha innovation program. Built with React and TypeScript, covering visual identity, interface architecture, and responsive experience — from wireframes to high-fidelity implementation.',
-        tags: ['React', 'TypeScript', 'SCSS', 'Branding'],
+          'Institutional web platform for GOLD — a diversity and inclusion project linked to SENAC. Built with React and Tailwind CSS, focused on accessibility, clear information hierarchy, and responsive design across different devices and user profiles.',
+        tags: ['React', 'Tailwind CSS', 'Accessibility'],
+        link: 'https://keziaoliveira.github.io/gold-landing/',
       },
     ],
   },
@@ -138,10 +156,11 @@ export const content = {
         description: 'Desenvolvedora construindo universos digitais',
         subheadline:
           'Transformando fluxos complexos em experiências intuitivas, funcionais e visualmente refinadas',
+        exploreButtonRing: 'NAVEGAR EM MODO EXPLORAÇÃO •',
       },
       about: {
         label: 'Sobre',
-        title: 'Sobre',
+        title: 'Minha trajetória',
         role: 'Desenvolvedora Frontend & Fullstack',
         stats: {
           projects: 'projetos desenvolvidos',
@@ -156,21 +175,36 @@ export const content = {
       },
       projects: {
         label: 'Showcase',
-        title: 'Projetos Selecionados',
+        title: 'Alguns projetos recentes',
       },
       contact: {
         title: 'Contato',
-        // subtitle:
-        //   'Vamos construir algo incrível juntos. Estou aberta a oportunidades, freela e boas conversas.',
+        subtitle:
+          'Vamos construir algo incrível juntos. Estou aberta a oportunidades, freelas e boas conversas.',
+      },
+      exploreMode: {
+        backToPortfolio: 'Voltar ao Portfólio',
+        modeTag: 'MODO EXPLORAÇÃO',
+        orbiting: 'ORBITANDO',
+        hintKeyboard: 'Use as setinhas do teclado',
+        hintNavigate: 'para navegar entre os planetas',
+        hintClickTopics: 'Clique nos tópicos da barra para voar até eles',
+        hintEscBack: 'Voltar ao portfólio',
+        gameCtaBadge: '⚠ AMEAÇA DETECTADA',
+        gameCtaDesc: 'Uma frota de bugs foi detectada no perímetro. Os sistemas de contenção automática falharam. Precisamos de um operador para assumir o controle',
+        gameCtaButton: 'ACEITAR MISSÃO',
+      },
+      footer: {
+        madeWithPrefix: 'Feito com',
+        madeWithSuffix: 'por Kezia',
       },
     },
 
     about: {
       paragraphs: [
-        'Desenvolvedora frontend e fullstack focada na construção de aplicações web modernas que combinam engenharia sólida, design de interface e pensamento centrado no usuário.',
-        'Meu stack principal inclui React, Angular, Node.js, TypeScript e JavaScript — com experiência em desenvolvimento frontend e backend, bancos de dados relacionais e base em Python e Java.',
-        'Também tenho experiência prática em branding e design visual, o que influencia diretamente como abordo arquitetura de UI, identidade de produto e a relação entre estética e função.',
-        'Trabalhei em sistemas enterprise, plataformas de gestão e experiências digitais imersivas — sempre transformando fluxos complexos em soluções intuitivas e funcionais.',
+        'Sou a Kezia, desenvolvedora frontend. Comecei no design gráfico ainda adolescente e pouco depois no código, e as duas coisas cresceram juntas. Por isso eu não só implemento telas: eu desenho a interface, construo e penso em como ela vai ser usada de verdade.',
+        'Ao longo desse caminho, entreguei desde sistemas internos e plataformas SaaS até e-commerces, landing pages e experiências interativas com 3D e IA. Entre os projetos que mais me orgulham estão uma plataforma para a Vale que digitalizou o controle de EPIs e gerou cerca de R$31 mil de economia por ano, e módulos de um SaaS de gestão escolar usado por instituições de ensino.',
+        'Sou formada em Análise e Desenvolvimento de Sistemas, com especialização em frontend pela Oracle e formação em UX Design pelo Google. Trabalho principalmente com React, Next.js, Angular e TypeScript, e vou pro backend com Node.js quando o projeto pede. Fora do código, também faço branding, social media e edição de vídeo, o que me ajuda a enxergar o produto inteiro, da marca ao último clique.',
       ],
     },
 
@@ -227,28 +261,30 @@ export const content = {
         title: 'Glenso',
         description:
           'Plataforma de assistente virtual interativo desenvolvida com React e Three.js, explorando interfaces conversacionais em tempo real e elementos 3D imersivos. Responsável pela arquitetura frontend, integração 3D, fluxos de interação e sistema de UI. Foco em equilibrar performance, engajamento visual e usabilidade em um ambiente dinâmico orientado à interação.',
-        tags: ['React', 'Three.js', '3D Interface', 'Integrações de IA'],
+        tags: ['React', 'Three.js', 'Integrações de IA'],
       },
       {
         id: 2,
-        title: 'Scoreboard',
+        title: 'Petrocapixaba',
         description:
-          'Placar de beach tennis em tempo real desenvolvido com React e Supabase, com controle de partidas ao vivo e sincronização entre múltiplas telas. Implementei autenticação, sincronização em tempo real com banco de dados e interfaces responsivas para interação rápida em ambientes esportivos.',
-        tags: ['React', 'Supabase', 'Sincronização ao vivo', 'Autenticação'],
+          'Landing page institucional e sistema de gestão desenvolvidos para a Petrocapixaba. Construí o frontend completo, unindo a apresentação da marca ao público com os fluxos internos de gestão operacional da empresa, com foco em performance e clareza de interface.',
+        tags: ['React', 'TypeScript', 'Sistema de Gestão'],
+        link: 'https://petrocapixaba.com.br/',
       },
       {
         id: 3,
-        title: 'GOLD',
+        title: 'Scoreboard',
         description:
-          'Plataforma web institucional para o GOLD — projeto de diversidade e inclusão vinculado ao SENAC. Desenvolvida com React e Tailwind CSS, com foco em acessibilidade, hierarquia de informação clara e design responsivo para diferentes dispositivos e perfis de usuário.',
-        tags: ['React', 'JavaScript', 'Tailwind CSS', 'Acessibilidade'],
+          'Placar de beach tennis em tempo real desenvolvido com React e Supabase, com controle de partidas ao vivo e sincronização entre múltiplas telas. Implementei autenticação, sincronização em tempo real com banco de dados e interfaces responsivas para interação rápida em ambientes esportivos.',
+        tags: ['React', 'Supabase', 'Sincronização ao vivo'],
       },
       {
         id: 4,
-        title: 'Geeo',
+        title: 'GOLD',
         description:
-          'Landing page para a Geeo, startup de saúde selecionada pelo programa de inovação Centelha. Desenvolvida com React e TypeScript, cobrindo identidade visual, arquitetura de interface e experiência responsiva — do wireframe à implementação em alta fidelidade.',
-        tags: ['React', 'TypeScript', 'SCSS', 'Branding'],
+          'Plataforma web institucional para o GOLD — projeto de diversidade e inclusão vinculado ao SENAC. Desenvolvida com React e Tailwind CSS, com foco em acessibilidade, hierarquia de informação clara e design responsivo para diferentes dispositivos e perfis de usuário.',
+        tags: ['React', 'Tailwind CSS', 'Acessibilidade'],
+        link: 'https://keziaoliveira.github.io/gold-landing/',
       },
     ],
   },

@@ -73,7 +73,7 @@ function Model({ isHovered, isLaunching }) {
   }, [isLaunching]);
 
   // Rotação base definida pelo usuário no JSX
-  const BASE_ROT = [4.5, 1.57, 4.57];
+  const BASE_ROT = [4.5, 1.57, 4.57 + Math.PI];
 
   useFrame((state, delta) => {
     if (meshRef.current) {
@@ -103,7 +103,7 @@ function Model({ isHovered, isLaunching }) {
   });
 
   return (
-    <group ref={meshRef} rotation={[4.5, 1.57, 4.57]}>
+    <group ref={meshRef} rotation={[4.5, 1.57, 4.57 + Math.PI]}>
       <primitive object={model} />
       <group position={[0, -0.4, 0]}>
         <EngineFire active={isLaunching} />

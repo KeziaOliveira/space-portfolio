@@ -4,12 +4,12 @@ import { useLanguage } from '../../context/LanguageContext';
 import { AnimatedHeading } from '../../components/AnimatedText/AnimatedText';
 import './Projects.css';
 
-import geeoVideo from '../../assets/videos/projects_videos/Geeo_video.mp4';
 import goldVideo from '../../assets/videos/projects_videos/Gold_video.mp4';
 import glensoVideo from '../../assets/videos/projects_videos/Glenso_video.mp4';
+import petrocapixabaVideo from '../../assets/videos/projects_videos/Petrocapixaba_Video.mp4';
 import scoreVideo from '../../assets/videos/projects_videos/Scoreboard_video.mp4';
 
-const projectVideos = [glensoVideo, scoreVideo, goldVideo, geeoVideo];
+const projectVideos = [glensoVideo, petrocapixabaVideo, scoreVideo, goldVideo];
 
 const ProjectCard = ({ project, index, setActiveProject }) => {
   const ref = useRef(null);
@@ -95,13 +95,19 @@ const VisualLayer = ({ project, index, activeProject, mousePos }) => {
       }}
     >
       <motion.div
-        className="mockup-frame"
+        className={`mockup-frame ${project.link ? 'mockup-frame--linkable' : ''}`}
         style={{
           rotateX: isActive ? mousePos.y * -0.03 : 0,
           rotateY: isActive ? mousePos.x * 0.03 : 0,
         }}
+        onClick={() => {
+          if (project.link) window.open(project.link, '_blank', 'noopener,noreferrer');
+        }}
+        role={project.link ? 'link' : undefined}
+        aria-label={project.link ? `${project.title} (${project.link})` : undefined}
       >
         <div className="mockup-screen">
+          {project.link && <span className="mockup-link-hint" aria-hidden="true">↗</span>}
           {projectVideos[index] ? (
             <video
               src={projectVideos[index]}

@@ -2,6 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { AnimatedHeading, AnimatedBlock } from '../../components/AnimatedText/AnimatedText';
 import './About.css';
+import GoogleLogo from '../../assets/icons/companies/google-logo.svg';
+import OracleLogo from '../../assets/icons/companies/oracle-logo.svg';
+import ValeLogo from '../../assets/icons/companies/vale-logo.svg';
 
 export default function About() {
   const { t } = useLanguage();
@@ -21,11 +24,17 @@ export default function About() {
                   {paragraph}
                 </AnimatedBlock>
               ))}
+
+              <AnimatedBlock as="div" className="about__companies" index={paragraphs.length}>
+                <img src={GoogleLogo} alt="Google" className="about__company-logo" />
+                <img src={OracleLogo} alt="Oracle" className="about__company-logo" />
+                <img src={ValeLogo} alt="Vale" className="about__company-logo" />
+              </AnimatedBlock>
             </div>
 
             <div className="about__stats">
               <div className="stat__item">
-                <span className="stat__number"><Counter end={42} suffix="+" /></span>
+                <span className="stat__number"><Counter end={37} suffix="+" /></span>
                 <span className="stat__label">{stats.projects}</span>
               </div>
               <div className="stat__item">
@@ -33,7 +42,7 @@ export default function About() {
                 <span className="stat__label">{stats.years}</span>
               </div>
               <div className="stat__item">
-                <span className="stat__number"><Counter end={60} suffix="+" /></span>
+                <span className="stat__number"><Counter end={42} suffix="+" /></span>
                 <span className="stat__label">{stats.clients}</span>
               </div>
             </div>

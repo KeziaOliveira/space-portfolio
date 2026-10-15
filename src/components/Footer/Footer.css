@@ -18,6 +18,30 @@
   text-align: center;
 }
 
+.footer__bottom-row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__to-top {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.footer__heart {
+  animation: footer-heart-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes footer-heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
+}
+
 .footer__brand {
   display: flex;
   align-items: center;
