@@ -151,6 +151,7 @@
   gap: 5px;
   padding: var(--space-2);
   z-index: 101;
+  flex-shrink: 0;
 }
 
 .header__toggle-bar {
@@ -176,6 +177,10 @@
 
 /* Mobile */
 @media (max-width: 767px) {
+  .header {
+    padding: 0 var(--space-4);
+  }
+
   .header--scrolled {
     width: 95%;
     padding: 0 var(--space-2);
@@ -183,6 +188,17 @@
 
   .header__toggle {
     display: flex;
+  }
+
+  .header__logo {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .header__logo-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .header__nav {

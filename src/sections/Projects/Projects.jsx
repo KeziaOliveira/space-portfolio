@@ -37,6 +37,19 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
         <h3 className="project-title">{project.title}</h3>
       </div>
 
+      {projectVideos[index] && (
+        <div className="project-card-media">
+          <video
+            src={projectVideos[index]}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="project-card-video"
+          />
+        </div>
+      )}
+
       <p className="project-description">{project.description}</p>
 
       <div className="project-tags">

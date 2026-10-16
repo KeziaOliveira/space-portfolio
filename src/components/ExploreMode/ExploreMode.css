@@ -823,3 +823,98 @@
   vertical-align: middle;
 }
 
+/* ===========================
+   Responsive — Modo Exploração
+   =========================== */
+@media (max-width: 860px) {
+  .explore__top-bar {
+    width: 94%;
+  }
+
+  .explore__bar {
+    height: 52px;
+    padding: 0 var(--space-4);
+  }
+
+  .explore__progress {
+    gap: var(--space-4);
+  }
+
+  .explore__progress-item {
+    font-size: 0.68rem;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .explore__back-btn {
+    font-size: 0.72rem;
+  }
+
+  .explore__panel-overlay {
+    padding: 80px var(--space-4) var(--space-4);
+    background: rgba(2, 6, 23, 0.94);
+  }
+
+  .explore__panel-wrap {
+    max-width: 100%;
+  }
+
+  .hud-header {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .hud-panel-scroll {
+    padding: 0 var(--space-5) var(--space-5);
+  }
+
+  .hud-project-expanded-layout {
+    flex-direction: column;
+  }
+
+  .hud-project-video-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .hud-about-stats {
+    gap: var(--space-4);
+  }
+
+  .explore__hint {
+    max-width: 92%;
+    white-space: normal;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .hud-game-cta__row {
+    flex-wrap: wrap;
+  }
+
+  .hud-game-cta__desc {
+    flex-basis: 100%;
+    order: 3;
+  }
+}
+
+@media (max-width: 560px) {
+  .explore__bar-logo {
+    display: none;
+  }
+
+  .explore__progress {
+    display: none;
+  }
+
+  .explore__bar {
+    padding: 0 var(--space-3);
+  }
+
+  .hud-about-stats {
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+  }
+}
+

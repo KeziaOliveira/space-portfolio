@@ -81,3 +81,14 @@
     height: 96px;
   }
 }
+
+@media (max-width: 480px) {
+  .contact__links {
+    gap: var(--space-5);
+    padding: var(--space-4);
+  }
+  .contact__icon-link {
+    width: 64px;
+    height: 64px;
+  }
+}
