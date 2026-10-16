@@ -3,6 +3,11 @@ import { useLanguage } from '../../context/LanguageContext';
 import { AnimatedHeading, AnimatedBlock } from '../../components/AnimatedText/AnimatedText';
 import TechCarousel from './TechCarousel';
 import './Experience.css';
+import sfeVideo from '../../assets/videos/experience_videos/SFE_video.mp4';
+import escolaVideo from '../../assets/videos/experience_videos/Escolaweb_video.mp4';
+import ecommerceVideo from '../../assets/videos/experience_videos/ecommerce-recording.mp4';
+
+const EXPERIENCE_VIDEOS = [sfeVideo, escolaVideo, ecommerceVideo];
 
 function ExperienceItem({ item, index, isActive, onSelect }) {
   const itemRef = useRef(null);
@@ -42,10 +47,10 @@ function ExperienceItem({ item, index, isActive, onSelect }) {
             </div>
 
             <div className="experience__media-side">
-              {item.videoUrl ? (
+              {EXPERIENCE_VIDEOS[index] ? (
                 <div className="experience__video-wrapper">
                   <video
-                    src={new URL(item.videoUrl, import.meta.url).href}
+                    src={EXPERIENCE_VIDEOS[index]}
                     autoPlay loop muted playsInline
                     className="experience__media-video"
                   />
