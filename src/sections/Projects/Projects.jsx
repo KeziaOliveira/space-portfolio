@@ -11,7 +11,7 @@ import scoreVideo from '../../assets/videos/projects_videos/Scoreboard_video.mp4
 
 const projectVideos = [glensoVideo, petrocapixabaVideo, scoreVideo, goldVideo];
 
-const ProjectCard = ({ project, index, setActiveProject }) => {
+const ProjectCard = ({ project, index, setActiveProject, isMobile }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     margin: "-57.5% 0px -42.5% 0px",
@@ -37,7 +37,7 @@ const ProjectCard = ({ project, index, setActiveProject }) => {
         <h3 className="project-title">{project.title}</h3>
       </div>
 
-      {projectVideos[index] && (
+      {isMobile && projectVideos[index] && (
         <div className="project-card-media">
           <video
             src={projectVideos[index]}
@@ -154,6 +154,9 @@ export default function Projects() {
   const { t } = useLanguage();
   const [activeProject, setActiveProject] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1024px)').matches
+  );
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -165,6 +168,14 @@ export default function Projects() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 1024px)');
+    setIsMobile(mql.matches);
+    const onChange = (e) => setIsMobile(e.matches);
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
   }, []);
 
   return (
@@ -183,6 +194,7 @@ export default function Projects() {
                 project={project}
                 index={index}
                 setActiveProject={setActiveProject}
+                isMobile={isMobile}
               />
             ))}
           </div>
@@ -190,21 +202,23 @@ export default function Projects() {
           <div className="content-spacer" />
         </div>
 
-        <div className="visual-side">
-          <div className="sticky-wrapper">
-            <div className="visual-showcase-container">
-              {t.projects.map((project, index) => (
-                <VisualLayer
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  activeProject={activeProject}
-                  mousePos={mousePos}
-                />
-              ))}
+        {!isMobile && (
+          <div className="visual-side">
+            <div className="sticky-wrapper">
+              <div className="visual-showcase-container">
+                {t.projects.map((project, index) => (
+                  <VisualLayer
+                    key={project.id}
+                    project={project}
+                    index={index}
+                    activeProject={activeProject}
+                    mousePos={mousePos}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
