@@ -13,43 +13,8 @@
   background: transparent;
 }
 
-/* CSS Starfield — fallback para mobile */
-.hero__stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .hero__stars {
-    display: none;
-  }
-}
-
-.hero__stars::before,
-.hero__stars::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.hero__stars::before {
-  width: 1px;
-  height: 1px;
-  box-shadow:
-    120px 80px 0 0 rgba(255,255,255,0.4),
-    500px 60px 0 0 rgba(255,255,255,0.3),
-    700px 200px 0 0 rgba(255,255,255,0.15),
-    250px 400px 0 0 rgba(255,255,255,0.2),
-    600px 350px 0 0 rgba(255,255,255,0.35);
-  animation: twinkle 5s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.4; }
-  100% { opacity: 1; }
-}
+/* O céu estrelado (desktop: canvas 3D; mobile: fallback em CSS) vive em
+   Scene3D, como camada fixa atrás de toda a página — não só do Hero. */
 
 .hero__container {
   width: 100%;

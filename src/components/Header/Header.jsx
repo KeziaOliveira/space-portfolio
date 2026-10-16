@@ -40,7 +40,10 @@ export default function Header() {
   const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    <header className={`header ${scrolled ? 'header--scrolled' : ''}`} role="banner">
+    <header
+      className={`header ${(scrolled || menuOpen) ? 'header--scrolled' : ''}`}
+      role="banner"
+    >
       <div className="header__container">
         <a href="#" className="header__logo" aria-label="Ir para o topo">
           <span className="header__logo-text">Kezia Oliveira</span>

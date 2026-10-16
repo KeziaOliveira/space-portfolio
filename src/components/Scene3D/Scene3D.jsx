@@ -50,7 +50,15 @@ export default function Scene3D() {
     };
   }, []);
 
-  if (isMobile) return null;
+  if (isMobile) {
+    return (
+      <div className="scene3d-container" aria-hidden="true">
+        <div className="mobile-starfield__layer"></div>
+        <div className="mobile-starfield__layer mobile-starfield__layer--medium"></div>
+        <div className="mobile-starfield__layer mobile-starfield__layer--large"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="scene3d-container" aria-hidden="true">

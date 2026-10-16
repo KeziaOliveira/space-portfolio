@@ -24,10 +24,6 @@ export default function Hero({ onExplore }) {
       className={`hero ${isLaunching ? 'hero--launching' : ''}`}
       aria-label="Apresentação"
     >
-      <div className="hero__stars" aria-hidden="true"></div>
-      <div className="hero__stars hero__stars--medium" aria-hidden="true"></div>
-      <div className="hero__stars hero__stars--large" aria-hidden="true"></div>
-
       <div className="hero__container">
         <div className="hero__bottom-left">
           <AnimatedBlock as="p" className="hero__description">
